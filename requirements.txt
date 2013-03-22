@@ -1,9 +1,10 @@
 Django==1.5
-Fabric==1.5.3
+Fabric==1.6.0
 boto==2.8.0
-distribute==0.6.31
+distribute==0.6.28
 dj-database-url==0.2.1
-django-storages==1.1.6
+paramiko==1.10.0
 psycopg2==2.4.6
+pycrypto==2.6
 requests==1.1.0
 wsgiref==0.1.2
