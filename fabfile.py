@@ -19,7 +19,7 @@ def load_env ():
 
 def manage (cmd, prefix="python"):
     load_env()
-    local("{0} app/manage.py {1}".format(prefix, cmd))
+    local("{0} jakt/manage.py {1}".format(prefix, cmd))
 
 def shell ():
     manage("shell", prefix="ipython")

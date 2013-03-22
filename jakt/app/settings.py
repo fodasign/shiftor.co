@@ -142,12 +142,12 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-if not DEBUG:
+SECRET_KEY = None
+if not DEBUG and not SECRET_KEY:
     raise ImproperlyConfigured("No secret key set for new project.")
-else:
+elif not SECRET_KEY:
     warnings.warn("Your secret key isn't set yet. DON'T YOU DARE IGNORE THIS.")
     SECRET_KEY = 'Fix this'
-# SECRET_KEY = 'You need a new key'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
