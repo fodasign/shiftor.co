@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <h1>This page doesn't exist. Did you get lost?!</h1>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    mixpanel.track("missing")
+</script>
+{% endblock %}

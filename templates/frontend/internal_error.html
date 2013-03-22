@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <div style="text-align: center">
+        <h1>Oh no! Something went wrong :(</h1>
+        <p>But don't you worry, we're working on it!</p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    mixpanel.track("error")
+</script>
+{% endblock %}

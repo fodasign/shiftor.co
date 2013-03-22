@@ -1,0 +1,9 @@
+<!-- Put GA here -->
+<!-- Put mixpanel here -->
+{% if user.is_authenticated %}
+<!-- Register the user -->
+<script type="text/javascript">
+    // mixpanel.identify("{{ user.username }}")
+</script>
+<!-- End user registration -->
+{% endif %}

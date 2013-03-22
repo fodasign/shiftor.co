@@ -1,0 +1,45 @@
+#messages {
+
+    #messages-container {
+        padding: 5px;
+        background: #eee;
+        background: url("http://silktradr-assets.s3-website-us-east-1.amazonaws.com/images/billie_holiday.png");
+        .box-sizing(border-box);
+
+        .message {
+            .box-sizing(border-box);
+            padding: 10px;
+            background: @white;
+            border-bottom: 1px solid @thinLineColor;
+            // margin-bottom: 5px;
+            cursor: pointer;
+            font-size: 16px;
+
+            &:last-child {
+                border: none;
+                margin-bottom: 0;
+            }
+
+            &:hover {
+                background: #eee;
+            }
+
+            .from {
+                // font-size: 14px;
+            }
+
+            .time {
+                font-size: 12px;
+            }
+
+        }
+
+        .unread {
+            background: #eee;
+        }
+    }
+
+    .no-messages {
+        text-align: center;
+    }
+}
