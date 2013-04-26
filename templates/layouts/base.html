@@ -35,9 +35,11 @@
 
     {% include "layouts/navbar.html" %}
 
-        <!-- Page content -->
-        {% block content %}{% endblock %}
-        <!-- End page content -->
+        <div class="page">
+            <!-- Page content -->
+            {% block content %}{% endblock %}
+            <!-- End page content -->
+        </div>
 
         <div id="push"></div>
     </div>

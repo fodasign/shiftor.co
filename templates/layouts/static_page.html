@@ -1,0 +1,17 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1>
+                {% block static_title %}Static Title{% endblock %}
+            </h1>
+            {% block static_content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
