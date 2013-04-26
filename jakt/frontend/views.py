@@ -13,13 +13,13 @@ def home (request):
     return render(request, "frontend/home.html")
 
 def about (request):
-    return render(request, "frontend/about.html")
+    return render(request, "frontend/about.html", {"current": "about"})
 
 def hiw (request):
-    return render(request, "frontend/hiw.html")
+    return render(request, "frontend/hiw.html", {"current": "hiw"})
 
 def contact (request):
-    return render(request, "frontend/contact.html")
+    return render(request, "frontend/contact.html", {"current": "contact"})
 
 def privacy (request):
     return render(request, "frontend/privacy.html")

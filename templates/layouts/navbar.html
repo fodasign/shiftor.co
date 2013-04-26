@@ -10,13 +10,13 @@
             <a class="brand" href="{% url 'home' %}">Bootstrap</a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li class="active">
+                    <li {% if current == "about" %} class="active" {% endif %}>
                         <a href="{% url 'about' %}">About</a>
                     </li>
-                    <li class="">
+                    <li {% if current == "hiw" %} class="active" {% endif %}>
                         <a href="{% url 'hiw' %}">How It Works</a>
                     </li>
-                    <li class="">
+                    <li {% if current == "contact" %} class="active" {% endif %}>
                         <a href="{% url 'contact' %}">Contact Us</a>
                     </li>
                     <li class="">
