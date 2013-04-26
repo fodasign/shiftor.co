@@ -6,17 +6,6 @@
 // Global values
 // --------------------------------------------------
 
-// Custom Variables
-@bodyCopy:              #4d4d4d;
-// @headerColor:           #70cee3;
-@headerColor:           #2b2b2b;
-@navActive:             #f8f8f8;
-@navDisabled:           #cccccc;
-@navHover:              #383838;
-@navBg:                 #2d2d2d;
-@navBgActive:           #383838;
-@footerBg:              #eaeaea;
-@thinLineColor:         #cacaca;
 
 // Grays
 // -------------------------
@@ -27,6 +16,7 @@
 @grayLight:             #999;
 @grayLighter:           #eee;
 @white:                 #fff;
+
 
 // Accent colors
 // -------------------------
@@ -39,21 +29,16 @@
 @pink:                  #c3325f;
 @purple:                #7a43b6;
 
-// Custom colors
-@turquoise:             #73c6d2;
-@aqua:                  #a2d2cf;
-@olive:                 #dde2c7;
-
 
 // Scaffolding
 // -------------------------
 @bodyBackground:        @white;
-@textColor:             @bodyCopy;
+@textColor:             @grayDark;
 
 
 // Links
 // -------------------------
-@linkColor:             @bodyCopy;
+@linkColor:             #08c;
 @linkColorHover:        darken(@linkColor, 15%);
 
 
@@ -62,17 +47,15 @@
 @sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
 @serifFontFamily:       Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
-@opensans:              "Open Sans", sans-serif;
-@oswald:                "Oswald", sans-serif;
 
-@baseFontSize:          16px;
-@baseFontFamily:        @opensans;
-@baseLineHeight:        1.5em;
+@baseFontSize:          14px;
+@baseFontFamily:        @sansFontFamily;
+@baseLineHeight:        20px;
 @altFontFamily:         @serifFontFamily;
 
-@headingsFontFamily:    @oswald; //
-@headingsFontWeight:    300;    // instead of browser default, bold
-@headingsColor:         @headerColor; // empty to use BS default, @textColor
+@headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
+@headingsFontWeight:    bold;    // instead of browser default, bold
+@headingsColor:         inherit; // empty to use BS default, @textColor
 
 
 // Component sizing
@@ -87,9 +70,9 @@
 @paddingSmall:          2px 10px;  // 26px
 @paddingMini:           0 6px;   // 22px
 
-@baseBorderRadius:      0px;
-@borderRadiusLarge:     0px;
-@borderRadiusSmall:     0px;
+@baseBorderRadius:      4px;
+@borderRadiusLarge:     6px;
+@borderRadiusSmall:     3px;
 
 
 // Tables
@@ -179,7 +162,7 @@
 
 // Hr border color
 // -------------------------
-@hrBorder:                @thinLineColor;
+@hrBorder:                @grayLighter;
 
 
 // Horizontal forms & lists
@@ -197,7 +180,7 @@
 @navbarCollapseWidth:             979px;
 @navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
 
-@navbarHeight:                    60px;
+@navbarHeight:                    40px;
 @navbarBackgroundHighlight:       #ffffff;
 @navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
 @navbarBorder:                    darken(@navbarBackground, 12%);
@@ -212,16 +195,13 @@
 @navbarBrandColor:                @navbarLinkColor;
 
 // Inverted navbar
-// @navbarInverseBackground:                #111111;
-// @navbarInverseBackgroundHighlight:       #222222;
-// @navbarInverseBorder:                    #252525;
-@navbarInverseBackground:                @navBg;
+@navbarInverseBackground:                #111111;
 @navbarInverseBackgroundHighlight:       #222222;
 @navbarInverseBorder:                    #252525;
 
 @navbarInverseText:                      @grayLight;
 @navbarInverseLinkColor:                 @grayLight;
-@navbarInverseLinkColorHover:            @navActive;
+@navbarInverseLinkColorHover:            @white;
 @navbarInverseLinkColorActive:           @navbarInverseLinkColorHover;
 @navbarInverseLinkBackgroundHover:       transparent;
 @navbarInverseLinkBackgroundActive:      @navbarInverseBackground;

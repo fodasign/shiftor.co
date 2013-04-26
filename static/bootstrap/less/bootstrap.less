@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.3.0
+ * Bootstrap v2.3.1
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -25,7 +25,6 @@
 @import "code.less";
 @import "forms.less";
 @import "tables.less";
-@import "fonts.less"; // Custom fonts
 
 // Components: common
 @import "sprites.less";
@@ -63,14 +62,16 @@
 // Utility classes
 @import "utilities.less"; // Has to be last to override when necessary
 
-// Responsive
-@import "responsive.less";
+// Responsive stuff
+// @import "responsive-1200px-min.less";
+@import "responsive-767px-max.less";
+@import "responsive-768px-979px.less";
+@import "responsive-navbar.less";
+@import "responsive-utilities.less";
 
-// Base Styles
+// Custom Files
 @import "base.less";
-
-// Sticky Footer
+@import "footer.less";
 @import "sticky-footer.less";
 
-// Homepage
-@import "homepage.less";
+

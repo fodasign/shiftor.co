@@ -166,6 +166,7 @@ input[type="button"] {
   .buttonBackground(@btnInverseBackground, @btnInverseBackgroundHighlight);
 }
 
+
 // Cross-browser Jank
 // --------------------------------------------------
 
@@ -224,30 +225,4 @@ input[type="submit"].btn {
 .btn-link[disabled]:focus {
   color: @grayDark;
   text-decoration: none;
-}
-
-
-// Custom buttons
-.button {
-  padding: 5px 8px;
-  border: none;
-  outline: none;
-  opacity: .8;
-  .border-radius(2px);
-  color: @bodyCopy;
-  height: 40px;
-
-  &:hover {
-    opacity: 1;
-  }
-
-}
-
-
-.btn-turq {
-  background: @aqua;
-}
-
-.btn-olive {
-  background: @olive;
 }
