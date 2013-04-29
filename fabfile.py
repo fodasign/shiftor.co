@@ -1,4 +1,5 @@
 from fabric.api import local
+import pip
 
 def less ():
     local("lessc -x static/bootstrap/less/bootstrap.less > static/css/style.css")
@@ -7,6 +8,10 @@ def freeze ():
     local("pip freeze > requirements.txt")
     local("git add requirements.txt")
     local("git commit -v")
+
+def upgrade ():
+    for dist in pip.get_installed_distributions():
+        local("pip install --upgrade {0}".format(dist.project_name))
 
 def load_env ():
     with open(".env") as f:
