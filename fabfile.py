@@ -1,5 +1,5 @@
+import pip, os
 from fabric.api import local
-import pip
 
 def less ():
     local("lessc -x static/bootstrap/less/bootstrap.less > static/css/style.css")
@@ -17,10 +17,8 @@ def load_env ():
     with open(".env") as f:
         content = f.readlines()
     for var in content:
-        try:
-            local("export {0}={1}".format(*var.strip().split("=")))
-        except:
-            print "{0} was not run".format(var)
+        k, v = var.strip().split("=")
+        os.environ[k] = v
 
 def manage (cmd, prefix="python"):
     load_env()
