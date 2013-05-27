@@ -24,6 +24,15 @@ def manage (cmd, prefix="python"):
     load_env()
     local("{0} jakt/manage.py {1}".format(prefix, cmd))
 
+def migrate (app):
+    manage("migrate {0}".format(app))
+
+def schemamigrate (app, flags="--auto"):
+    manage("schemamigration {0} {1}".format(app, flags))
+
+def syncdb ():
+    manage("syncdb")
+
 def shell ():
     manage("shell", prefix="ipython")
 
