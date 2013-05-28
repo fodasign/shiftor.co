@@ -28,8 +28,13 @@ def manage (cmd, prefix="python"):
     load_env()
     local("{0} jakt/manage.py {1}".format(prefix, cmd))
 
-def migrate (app):
-    manage("migrate {0}".format(app))
+def migrate (app=None, flags=None):
+    cmd = "migrate"
+    if app:
+        cmd += " {0}".format(app)
+    if flags:
+        cmd += " {0}".format(flags)
+    manage(cmd)
 
 def schemamigrate (app, flags="--auto"):
     manage("schemamigration {0} {1}".format(app, flags))
