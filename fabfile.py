@@ -14,11 +14,15 @@ def upgrade ():
         local("pip install --upgrade {0}".format(dist.project_name))
 
 def load_env ():
-    with open(".env") as f:
-        content = f.readlines()
-    for var in content:
-        k, v = var.strip().split("=")
-        os.environ[k] = v
+    try:
+        with open(".env") as f:
+            content = f.readlines()
+        for var in content:
+            k, v = var.strip().split("=")
+            os.environ[k] = v
+    except IOError:
+        # Guess this is being run on Heroku
+        pass
 
 def manage (cmd, prefix="python"):
     load_env()
