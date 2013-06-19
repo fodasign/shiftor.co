@@ -1,5 +1,6 @@
 import pip, os
 from fabric.api import local
+from fabric.operations import prompt
 
 def less ():
     local("lessc -x static/bootstrap/less/bootstrap.less > static/css/style.css")
@@ -38,6 +39,10 @@ def migrate (app=None, flags=None):
 
 def schemamigrate (app, flags="--auto"):
     manage("schemamigration {0} {1}".format(app, flags))
+
+def datamigration (app):
+    name = prompt("Enter a name for this datamigration:", validate=r'^\w+$')
+    manage("datamigration {0} {1}".format(app, name))
 
 def syncdb ():
     manage("syncdb")
