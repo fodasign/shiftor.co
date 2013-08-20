@@ -1,11 +1,161 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/homepage_base.html" %}
 
 {% block content %}
 
-<div class="container">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, ex iusto asperiores dolore hic totam suscipit nisi architecto esse dignissimos! Dolorem, eligendi, natus eveniet eum officia ducimus nostrum aperiam commodi.
-    </p>
+<div class="content">
+    <div class="row">
+        <div class="hero hero-home">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="row">
+                            <div class="span4">
+                                <img src="http://i.imgur.com/9DYxKRn.png" style="margin-top: 35px">
+                            </div>
+                            <div class="span8">
+                                <h1 class="centered uppercase">Find your next bar job</h1>
+                                <h4 class="centered">Bartenders, Barbacks, Waiters</h4>
+                                <center>
+                                <form>
+                                    <input type="text" placeholder="NAME" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
+                                    <input type="text" placeholder="EMAIL" class="span4 input-large uppercase" style="text-align:center"></input>
+                                    <br><br><center><a href="" class="solid-button">I want a Job!</a></center>
+                                </form>
+                                </center>
+                                <br>
+                                <center>OR</center>
+                                <br><br><center><a href="" class="solid-button">
+                                Login with Facebook</a></center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="logos">
+        <div class="container">
+            <div class="span6 offset6">
+                <div class="testimonial" data-text="1">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="pull-right">&mdash;Josh Kehn, Village Pourhouse</p>
+                    <br><br><br>
+                </div>
+                <div class="testimonial" data-text="2" style="display:none">
+                    <p>
+                        2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="pull-right">&mdash;Josh Kehn, Village Pourhouse</p>
+                    <br><br><br>
+                </div>
+                <div class="testimonial" data-text="3" style="display:none">
+                    <p>
+                        3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="pull-right">&mdash;Josh Kehn, Village Pourhouse</p>
+                    <br><br><br>
+                </div>
+                <div class="testimonial" data-text="4" style="display:none">
+                    <p>
+                        4 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="pull-right">&mdash;Josh Kehn, Village Pourhouse</p>
+                    <br><br><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span3">
+                    <img src="http://placehold.it/250x150" data-id="1" class="img-polaroid active">
+                </div>
+                <div class="span3">
+                    <img src="http://placehold.it/250x150" data-id="2" class="img-polaroid">
+                </div>
+                <div class="span3">
+                    <img src="http://placehold.it/250x150" data-id="3" class="img-polaroid">
+                </div>
+                <div class="span3">
+                    <img src="http://placehold.it/250x150" data-id="4" class="img-polaroid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="bartenders">
+        <div class="container">
+            <h1 class="centered">Are you a Bartender?</h1>
+            <div class="span12">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <br><br><center><a href="" class="open-button">Find a Job</a></center>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="barmanagers">
+        <div class="container">
+            <h1 class="centered">Are you a Bar Manager?</h1>
+            <div class="span12">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <br><br><center><a href="" class="open-button">Find Employees</a></center>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+
+$(function () {
+
+    var counter = 2
+    setInterval(function () {
+        if (counter >= 5) counter = 1
+        $(".testimonial").hide()
+        $(".testimonial[data-text='" + counter + "']").show()
+        $(".img-polaroid").removeClass("active")
+        $(".img-polaroid[data-id='" + counter++ + "']").addClass("active")
+    }, 5000)
+
+})
+
+
+</script>
 
 {% endblock %}

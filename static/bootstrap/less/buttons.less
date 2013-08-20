@@ -226,3 +226,35 @@ input[type="submit"].btn {
   color: @grayDark;
   text-decoration: none;
 }
+
+.open-button {
+  text-transform: uppercase;
+  color: @darkTeal;
+  background-color: transparent;
+  border: 1px solid @darkTeal;
+  .border-radius(3px);
+  padding: 10px 40px;
+
+  &:hover {
+    background-color: @darkTeal;
+    text-decoration: none;
+    color: @white;
+  }
+}
+
+.solid-button {
+  text-transform: uppercase;
+  color: @white;
+  background-color: @teal;
+  border: 1px solid @teal;
+  .border-radius(3px);
+  padding: 10px 40px;
+
+  &:hover {
+    background-color: @darkTeal;
+    border: 1px solid @darkTeal;
+    text-decoration: none;
+    color: @white;
+  }
+}
+
