@@ -40,6 +40,9 @@ def completebartenderprofile (request):
 def barsignup (request):
     return render(request, "frontend/barsignup.html")
 
+def completebarprofile (request):
+    return render(request, "frontend/completebarprofile.html")
+
 
 
 def internal_error (request):

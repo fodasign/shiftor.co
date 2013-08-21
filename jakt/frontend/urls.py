@@ -14,6 +14,7 @@ urlpatterns = patterns("frontend.views",
     url(r"^bartendersignup$",       "bartendersignup",      name="bartendersignup"),
     url(r"^completebartenderprofile$",       "completebartenderprofile",      name="completebartenderprofile"),
     url(r"^barsignup$",             "barsignup",            name="barsignup"),
+    url(r"^completebarprofile$",             "completebarprofile",            name="completebarprofile"),
 
     # Error pages
     url(r"^500$", "internal_error",     name="internal-error"),
