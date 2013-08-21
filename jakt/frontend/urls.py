@@ -10,6 +10,11 @@ urlpatterns = patterns("frontend.views",
     url(r"^privacy$",   "privacy",      name="privacy"),
     url(r"^tos$",       "tos",          name="tos"),
 
+    url(r"^login$",                 "login",                name="login"),
+    url(r"^bartendersignup$",       "bartendersignup",      name="bartendersignup"),
+    url(r"^completebartenderprofile$",       "completebartenderprofile",      name="completebartenderprofile"),
+    url(r"^barsignup$",             "barsignup",            name="barsignup"),
+
     # Error pages
     url(r"^500$", "internal_error",     name="internal-error"),
     url(r"^404$", "missing_error",      name="missing-error"),

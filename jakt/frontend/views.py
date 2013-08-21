@@ -27,6 +27,21 @@ def privacy (request):
 def tos (request):
     return render(request, "frontend/tos.html")
 
+
+def login (request):
+    return render(request, "frontend/login.html")
+
+def bartendersignup (request):
+    return render(request, "frontend/bartendersignup.html")
+
+def completebartenderprofile (request):
+    return render(request, "frontend/completebartenderprofile.html")
+
+def barsignup (request):
+    return render(request, "frontend/barsignup.html")
+
+
+
 def internal_error (request):
     return render(request, "frontend/internal_error.html")
 
