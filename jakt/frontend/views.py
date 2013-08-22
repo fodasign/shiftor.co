@@ -28,6 +28,10 @@ def tos (request):
     return render(request, "frontend/tos.html")
 
 
+def search (request):
+    return render(request, "frontend/search.html")
+
+
 def login (request):
     return render(request, "frontend/login.html")
 
