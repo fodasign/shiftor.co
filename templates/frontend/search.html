@@ -5,7 +5,7 @@
 <div class="container" id="search">
     <div class="row">
         <h4 class="" style="margin-left: 20px">Search Workers</h4>
-        <a href="" class="js-message-users pull-right open-button small-button" style="margin-top: -40px">Message Selected People</a>
+        <a href="#message-modal" class="js-message-users pull-right open-button small-button" style="margin-top: -40px">Message Selected People</a>
 
         <div class="span3 box" id="filters">
             <p class="title">Gender</p>
@@ -345,6 +345,16 @@
   </div>
 </div>
 
+<!-- Message Modal -->
+<div id="message-modal" style='z-index: 5000' class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>×</span></button>
+    <h3 id="myModalLabel">Send Message</h3>
+  </div>
+  <div class="modal-body">
+  </div>
+</div>
+
 {% endblock %}
 
 {% block js %}
@@ -362,6 +372,7 @@ $(function () {
     $body.on("click", ".js-add-message", add_to_list)
     $body.on("click", ".js-selected", remove_from_list)
     $body.on("click", ".js-message-users", message_users)
+    $body.on("click", ".js-profile-modal", showProfileModal)
 
     function add_all (e) {
         e.preventDefault()
@@ -410,20 +421,27 @@ $(function () {
         e.preventDefault()
         if ( ! $(this).hasClass("complement-button-selected") ) {
             alert("Please select users to message first.")
+        } else {
+            var modal = $("#message-modal")
+            var modalBody = $(".modal-body", modal)
+            var modalHeader = $(".modal-header h3", modal)
+
+            var header = "Send Message to " + $(".js-selected").length + " People"
+
+            modalHeader.html(header)
+            modal.modal('show')
         }
     }
 
-    $("body").on("click", ".js-profile-modal" , function () {
+    function showProfileModal () {
 
         var modal = $("#profile-modal")
         var modalBody = $(".modal-body", modal)
         // var modalHeader = $(".modal-header h3", modal)
 
-        // var header = $(this).attr("data-id")
-
         // modalHeader.html(header)
         modal.modal('show')
-    })
+    }
 
 })
 
