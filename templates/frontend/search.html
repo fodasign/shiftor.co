@@ -425,7 +425,13 @@ $(function () {
 
         // Highlight Message Button
         $messageUsersBtn.addClass("complement-button-selected")
-        $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
+
+        if ($(".js-selected").length == 1) {
+            $messageUsersBtn.text("Message 1 Person")
+        } else {
+            $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
+        }
+
     }
 
     function remove_all (e) {
@@ -435,7 +441,12 @@ $(function () {
 
         // Remove Highlight Message Button
         $messageUsersBtn.removeClass("complement-button-selected")
-        $messageUsersBtn.text("Message Selected People")
+
+        if ($(".js-selected").length == 1) {
+            $messageUsersBtn.text("Message 1 Person")
+        } else {
+            $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
+        }
     }
 
     function add_to_list (e) {
@@ -444,7 +455,13 @@ $(function () {
 
         // Highlight Message Button
         $messageUsersBtn.addClass("complement-button-selected")
-        $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
+
+        if ($(".js-selected").length == 1) {
+            $messageUsersBtn.text("Message 1 Person")
+        } else {
+            $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
+        }
+
     }
 
     function remove_from_list (e) {
@@ -456,6 +473,8 @@ $(function () {
         if ($(".js-selected").length == 0) {
             $messageUsersBtn.removeClass("complement-button-selected")
             $messageUsersBtn.text("Message Selected People")
+        } else if ($(".js-selected").length == 1) {
+            $messageUsersBtn.text("Message 1 Person")
         } else {
             $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
         }
@@ -470,7 +489,11 @@ $(function () {
             var modalBody = $(".modal-body", modal)
             var modalHeader = $(".modal-header h3", modal)
 
-            var header = "Send Message to " + $(".js-selected").length + " People"
+            if ($(".js-selected").length == 1) {
+                var header = "Send Message to 1 Person"
+            } else {
+                var header = "Send Message to " + $(".js-selected").length + " People"
+            }
 
             modalHeader.html(header)
             modal.modal('show')
