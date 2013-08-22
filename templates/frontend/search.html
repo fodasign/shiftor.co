@@ -4,7 +4,7 @@
 
 <div class="container" id="search">
     <div class="row">
-        <h4 class="centered">Search Workers</h4>
+        <h4 class="" style="margin-left: 20px">Search Workers</h4>
         <a href="" class="js-message-users pull-right open-button small-button" style="margin-top: -40px">Message Selected People</a>
         <div class="span3 box" id="filters">
             <p class="title">Gender</p>
@@ -308,20 +308,22 @@ $(function () {
 
     function add_all (e) {
         e.preventDefault()
-        $(this).addClass("solid-button").addClass("js-all-selected")
+        $(this).addClass("solid-button").addClass("js-all-selected").text("Remove All From Message")
         $addMessageBtn.addClass("solid-button").addClass("js-selected").text("Added")
 
         // Highlight Message Button
         $messageUsersBtn.addClass("complement-button-selected")
+        $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
     }
 
     function remove_all (e) {
         e.preventDefault()
-        $(this).removeClass("solid-button").removeClass("js-all-selected")
+        $(this).removeClass("solid-button").removeClass("js-all-selected").text("Add All to Message")
         $addMessageBtn.removeClass("solid-button").removeClass("js-selected").text("Add to Message")
 
         // Remove Highlight Message Button
         $messageUsersBtn.removeClass("complement-button-selected")
+        $messageUsersBtn.text("Message Selected People")
     }
 
     function add_to_list (e) {
@@ -330,6 +332,7 @@ $(function () {
 
         // Highlight Message Button
         $messageUsersBtn.addClass("complement-button-selected")
+        $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
     }
 
     function remove_from_list (e) {
@@ -338,7 +341,12 @@ $(function () {
 
         // Check length of messagUsersBtn to see if any selected anymore
         // If length == 0 Remove Highlight Message Button
-        if ($(".js-selected").length == 0) $messageUsersBtn.removeClass("complement-button-selected")
+        if ($(".js-selected").length == 0) {
+            $messageUsersBtn.removeClass("complement-button-selected")
+            $messageUsersBtn.text("Message Selected People")
+        } else {
+            $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
+        }
     }
 
     function message_users (e) {
