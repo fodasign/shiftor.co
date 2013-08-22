@@ -5,7 +5,7 @@
 <div class="container" id="search">
     <div class="row">
         <h4 class="centered">Search Workers</h4>
-        <a href="" class="pull-right open-button small-button" style="margin-top: -40px">Message Selected People</a>
+        <a href="" class="js-message-users pull-right open-button small-button" style="margin-top: -40px">Message Selected People</a>
         <div class="span3 box" id="filters">
             <p class="title">Gender</p>
             <input type="checkbox" name="vehicle" value="Bike">&nbsp;Male<br>
@@ -298,32 +298,54 @@ $(function () {
 
     var $body = $("body")
     var $addMessageBtn = $(".js-add-message")
+    var $messageUsersBtn = $(".js-message-users")
 
     $body.on("click", ".js-add-all", add_all)
     $body.on("click", ".js-all-selected", remove_all)
     $body.on("click", ".js-add-message", add_to_list)
     $body.on("click", ".js-selected", remove_from_list)
+    $body.on("click", ".js-message-users", message_users)
 
     function add_all (e) {
         e.preventDefault()
         $(this).addClass("solid-button").addClass("js-all-selected")
-        $addMessageBtn.addClass("solid-button").text("Added")
+        $addMessageBtn.addClass("solid-button").addClass("js-selected").text("Added")
+
+        // Highlight Message Button
+        $messageUsersBtn.addClass("complement-button-selected")
     }
 
     function remove_all (e) {
         e.preventDefault()
         $(this).removeClass("solid-button").removeClass("js-all-selected")
-        $addMessageBtn.removeClass("solid-button").text("Add to Message")
+        $addMessageBtn.removeClass("solid-button").removeClass("js-selected").text("Add to Message")
+
+        // Remove Highlight Message Button
+        $messageUsersBtn.removeClass("complement-button-selected")
     }
 
     function add_to_list (e) {
         e.preventDefault()
         $(this).addClass("solid-button").addClass("js-selected").text("Added")
+
+        // Highlight Message Button
+        $messageUsersBtn.addClass("complement-button-selected")
     }
 
     function remove_from_list (e) {
         e.preventDefault()
         $(this).removeClass("solid-button").removeClass("js-selected").text("Add to List")
+
+        // Check length of messagUsersBtn to see if any selected anymore
+        // If length == 0 Remove Highlight Message Button
+        if ($(".js-selected").length == 0) $messageUsersBtn.removeClass("complement-button-selected")
+    }
+
+    function message_users (e) {
+        e.preventDefault()
+        if ( ! $(this).hasClass("complement-button-selected") ) {
+            alert("Please select users to message first.")
+        }
     }
 
 })
