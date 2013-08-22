@@ -302,22 +302,28 @@ $(function () {
     $body.on("click", ".js-add-all", add_all)
     $body.on("click", ".js-all-selected", remove_all)
     $body.on("click", ".js-add-message", add_to_list)
+    $body.on("click", ".js-selected", remove_from_list)
 
     function add_all (e) {
         e.preventDefault()
         $(this).addClass("solid-button").addClass("js-all-selected")
-        $addMessageBtn.addClass("solid-button")
+        $addMessageBtn.addClass("solid-button").text("Added")
     }
 
     function remove_all (e) {
         e.preventDefault()
         $(this).removeClass("solid-button").removeClass("js-all-selected")
-        $addMessageBtn.removeClass("solid-button")
+        $addMessageBtn.removeClass("solid-button").text("Add to Message")
     }
 
     function add_to_list (e) {
         e.preventDefault()
-        $(this).toggleClass("solid-button")
+        $(this).addClass("solid-button").addClass("js-selected").text("Added")
+    }
+
+    function remove_from_list (e) {
+        e.preventDefault()
+        $(this).removeClass("solid-button").removeClass("js-selected").text("Add to List")
     }
 
 })
