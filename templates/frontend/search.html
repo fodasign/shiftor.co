@@ -6,6 +6,7 @@
     <div class="row">
         <h4 class="" style="margin-left: 20px">Search Workers</h4>
         <a href="" class="js-message-users pull-right open-button small-button" style="margin-top: -40px">Message Selected People</a>
+
         <div class="span3 box" id="filters">
             <p class="title">Gender</p>
             <input type="checkbox" name="vehicle" value="Bike">&nbsp;Male<br>
@@ -47,6 +48,7 @@
             <input type="checkbox" name="vehicle" value="Car">&nbsp;Student<br>
             <input type="checkbox" name="vehicle" value="Bike">&nbsp;Professional<br>
         </div>
+
         <div class="span9" id="results">
             <div class="row">
                 <p class="span3" style="margin-top:10px; margin-bottom: -10px">Found <span class="teal">10</span> Matching Profiles</p>
@@ -73,8 +75,9 @@
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
                         </div>
                         <div class="span6 info">
-                            <a href=""><h4>Anthony Tumbiolo | 24</h4></a>
-                            <i>Bartender</i>
+                            <a href="#profile-modal" class="js-profile-modal" data-id="1"><h4>Anthony Tumbiolo | 24</h4></a>
+                            <i>Bartender (Licensed)</i><br>
+                            <i>10 years experience</i><br>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                         </div>
@@ -93,7 +96,7 @@
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
                         </div>
                         <div class="span6 info">
-                            <a href=""><h4>Anthony Tumbiolo | 24</h4></a>
+                            <a href="#profile-modal" class="js-profile-modal" data-id="2"><h4>Anthony Tumbiolo | 24</h4></a>
                             <i>Bartender</i>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
@@ -288,6 +291,30 @@
     </div>
 </div>
 
+
+<!-- Profile Modal -->
+<div id="profile-modal" style='z-index: 5000' class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <!--  <div class="modal-header">
+    <h3 id="myModalLabel"></h3>
+  </div> -->
+  <div class="modal-body">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>×</span></button>
+        <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid pull-right" style="margin-right: 10px">
+        <div class="span8 info">
+            <h3>Anthony Tumbiolo</h3>
+            <h4>Personal Info</h4>
+            <p><strong>Age:</strong> 24</p>
+            <p><strong>Student/Professional:</strong> Student</p>
+            <p><strong>Bio:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.</p>
+            <p><strong>Availability: </strong>Monday, Tuesday, Wednesday</p>
+            <h4>Work Experience</h4>
+        </div>
+  </div>
+</div>
+
 {% endblock %}
 
 {% block js %}
@@ -355,6 +382,18 @@ $(function () {
             alert("Please select users to message first.")
         }
     }
+
+    $("body").on("click", ".js-profile-modal" , function () {
+
+        var modal = $("#profile-modal")
+        var modalBody = $(".modal-body", modal)
+        // var modalHeader = $(".modal-header h3", modal)
+
+        // var header = $(this).attr("data-id")
+
+        // modalHeader.html(header)
+        modal.modal('show')
+    })
 
 })
 
