@@ -26,8 +26,8 @@
   top: 10%;
   left: 50%;
   z-index: @zindexModal;
-  width: 860px;
-  margin-left: -430px;
+  width: 700px;
+  margin-left: -350px;
   background-color: @white;
   border: 1px solid #999;
   border: 1px solid rgba(0,0,0,.3);
@@ -42,7 +42,7 @@
     .transition(e('opacity .3s linear, top .3s ease-out'));
     top: -25%;
   }
-  &.fade.in { top: 10%; }
+  &.fade.in { top: 5%; }
 }
 .modal-header {
   padding: 9px 15px;
@@ -60,7 +60,7 @@
 .modal-body {
   position: relative;
   overflow-y: auto;
-  max-height: 400px;
+  max-height: 550px;
   padding: 15px;
 }
 // Remove bottom margin if need be
