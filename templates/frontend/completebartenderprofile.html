@@ -9,24 +9,27 @@
         <center>
         <form class="complete-profile-form">
             <input type="text" placeholder="Name" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
-            <input type="text" placeholder="EMAIL" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
-            
-            <h5> Gender</h5>
+            <input type="text" placeholder="Email" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
+
             <select>
-            	<option value="" disabled selected>-select-</option>
+            	<option value="" disabled selected>-Gender-</option>
   				<option>Male</option>
 			  	<option>Female</option>
 			</select><br>
+            <h5>Location</h5>
+            <input type="text" placeholder="City" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
             <select class="input-medium bfh-states" data-country="US" data-state="NY"></select><br>
- 			
+
  			<h5>Phone Number</h5>
-            <input type="text" class="input-medium bfh-phone span4" data-format="+1 (ddd) ddd-dddd"></input><br>     
-            <button class="open-button" id="js-choose-logo">Choose Picture</button><br>
-            
+            <input type="text" class="input-medium bfh-phone span4" data-format="+1 (ddd) ddd-dddd"></input><br>
+
+            <h5>Photo</h5>
+            <button class="open-button" id="js-choose-logo">Choose Picture</button><br><br>
+
             <h5>Work Experience</h5>
             <input type="text" placeholder="Place of Work" class="span3 input-large"></input>
 	        <select class="span2">
-            	<option value="" disabled selected>Job</option>
+            	<option value="" disabled selected>Select Job</option>
   				<option>Bartender</option>
 			  	<option>Waiter/ Waitress</option>
 			  	<option>Bar Back</option>
@@ -34,7 +37,7 @@
 			</select><br>
 			<input type="text" placeholder="Place of Work" class="span3 input-large"></input>
 	        <select class="span2">
-            	<option value="" disabled selected>Job</option>
+            	<option value="" disabled selected>Select Job</option>
   				<option>Bartender</option>
 			  	<option>Waiter/ Waitress</option>
 			  	<option>Bar Back</option>
@@ -42,7 +45,7 @@
 			</select><br>
 			<input type="text" placeholder="Place of Work" class="span3 input-large"></input>
 	        <select class="span2">
-            	<option value="" disabled selected>Job</option>
+            	<option value="" disabled selected>Select Job</option>
   				<option>Bartender</option>
 			  	<option>Waiter/ Waitress</option>
 			  	<option>Bar Back</option>
@@ -50,7 +53,7 @@
 			</select><br>
 			<input type="text" placeholder="Place of Work" class="span3 input-large"></input>
 	        <select class="span2">
-            	<option value="" disabled selected>Job</option>
+            	<option value="" disabled selected>Select Job</option>
   				<option>Bartender</option>
 			  	<option>Waiter/ Waitress</option>
 			  	<option>Bar Back</option>
@@ -58,13 +61,13 @@
 			</select><br>
 			<input type="text" placeholder="Place of Work" class="span3 input-large"></input>
 	        <select class="span2">
-            	<option value="" disabled selected>Job</option>
+            	<option value="" disabled selected>Select Job</option>
   				<option>Bartender</option>
 			  	<option>Waiter/ Waitress</option>
 			  	<option>Bar Back</option>
 			  	<option>Other</option>
 			</select><br>
-			<h5>Number of Years in your Primary Industry<h5>	        
+			<h5>Number of Years in your Primary Industry</h5>
 	        <select>
             	<option value="" disabled selected>-select-</option>
   				<option>1</option>
@@ -75,53 +78,31 @@
 			  	<option>5+</option>
 			</select><br>
 
-			<h5>Preference of Work Atmosphere</h5>
-			<div class="profile-checkbox">
-				<label class="checkbox span2">
-    				<input type="checkbox"> Wine Bar
-  				</label><br>
-				<label class="checkbox span2">
-    				<input type="checkbox"> Club
-  				</label><br>
-  				<label class="checkbox span2">
-    				<input type="checkbox"> Lounge
-  				</label><br>
-	  			<label class="checkbox span2">
-	    			<input type="checkbox"> Sports Bar/ Pub
-	  			</label><br>
-	  			<label class="checkbox span2">
-	    			<input type="checkbox"> High-End Bar/ Restaurant
-	  			</label><br>
-	  			<label class="checkbox span2">
-	    			<input type="checkbox"> Catering Hall/ Event Space
-	  			</label><br>
-  			</div><BR>
+            <div style="text-align:left; width:250px; margin-left: auto; margin-right: auto">
+    			<h5>Preference of Work Atmosphere</h5>
+                <div class="profile-checkbox" style="font-weight: normal">
+                    <input type="checkbox" name="vehicle" value="Car">&nbsp;Sports Bar/Pub<br>
+                    <input type="checkbox" name="vehicle" value="Car">&nbsp;Wine Bar<br>
+                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;Club<br>
+                    <input type="checkbox" name="vehicle" value="Car">&nbsp;Lounge<br>
+                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;High-End Bar/Restaurant<br>
+                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;Catering Hall/Event Space
+      			</div>
+            </div>
+            <br>
 
-  			<h5>Shift Availability</h5>
-  			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox1" value="option1"> S
-			</label>
-			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox2" value="option2"> M
-			</label>
-			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox3" value="option3"> T
-			</label>
-			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox1" value="option1"> W
-			</label>
-			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox2" value="option2"> T
-			</label>
-			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox3" value="option3"> F
-			</label>
-			<label class="checkbox inline">
-			  <input type="checkbox" id="inlineCheckbox3" value="option3"> S
-			</label>
-			
-			<h5>Elevator Speech</h5>
-			<textarea class="span5" rows="12" maxlength="500"></textarea>
+            <div style="text-align:left; width:135px; margin-left: auto; margin-right: auto">
+      			<h5>Shift Availability</h5>
+      			<input type="checkbox" name="vehicle" value="Car">&nbsp;Monday<br>
+                <input type="checkbox" name="vehicle" value="Bike">&nbsp;Tuesday<br>
+                <input type="checkbox" name="vehicle" value="Car">&nbsp;Wednesday<br>
+                <input type="checkbox" name="vehicle" value="Car">&nbsp;Thursday<br>
+                <input type="checkbox" name="vehicle" value="Bike">&nbsp;Friday<br>
+                <input type="checkbox" name="vehicle" value="Bike">&nbsp;Saturday<br>
+                <input type="checkbox" name="vehicle" value="Bike">&nbsp;Sunday
+            </div>
+
+            <br>
 
 			<h5>Job Interests &amp; Experience (rank by preference)</h5>
 			<select>
@@ -153,6 +134,9 @@
 			  	<option>Other</option>
 			</select><br>
 
+            <h5>Elevator Speech</h5>
+            <textarea class="span5" maxlength="300" rows="5" placeholder="Please provide a short bio about yourself. Limit of 300 characters."></textarea>
+
 
 
 
@@ -172,14 +156,14 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-formhelpers-phone.js"></script>
 <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 
 $(function() {
 
 	filepicker.setKey('Aj0NKus78Tna46Cgz3Qz4z');
-	
+
 	$("#js-choose-logo").on("click", function() {
-		
+
 		filepicker.pick({
 		    mimetypes: ['image/*', 'text/plain'],
 		    container: 'window',
