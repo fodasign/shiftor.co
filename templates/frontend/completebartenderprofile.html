@@ -16,9 +16,20 @@
   				<option>Male</option>
 			  	<option>Female</option>
 			</select><br>
+
+            <h5>Birtday</h5>
+            <fieldset class="js-birthday-picker"></fieldset>
+
             <h5>Location</h5>
             <input type="text" placeholder="City" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
             <select class="input-medium bfh-states" data-country="US" data-state="NY"></select><br>
+
+            <h5>Are you a student?<h5>
+            <select>
+                <option value="" disabled selected>-select-</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select><br>
 
  			<h5>Phone Number</h5>
             <input type="text" class="input-medium bfh-phone span4" data-format="+1 (ddd) ddd-dddd"></input><br>
@@ -135,14 +146,13 @@
 			  	<option>Other</option>
 			</select><br>
 
-			<h5>Licensed Bartneder<h5>
+			<h5>Are you a licensed bartender?<h5>
 			<select>
 				<option value="" disabled selected>-select-</option>
   				<option>Yes</option>
 			  	<option>No</option>
 			</select><br>
-			<img src="http://placehold.it/100x100" class="img-polaroid">
-            <button class="open-button" id="js-choose-logo">Choose Picture</button><br><br>
+            <button class="open-button" id="js-choose-logo">Upload pdf of license to verify</button><br><br>
 
 
 
@@ -166,6 +176,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-formhelpers-states.en_US.js"></script>
 <!-- <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-formhelpers-phone-format.js"></script> -->
 <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-formhelpers-phone.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/bday-picker.js"></script>
 <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
 
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/prettyCheckable.css">
@@ -178,6 +189,10 @@ $(function() {
     // $("input[type=checkbox]").prettyCheckable({
     //     color: "red"
     // })
+
+    $(".js-birthday-picker").birthdaypicker({
+        minAge: 18
+    })
 
 	filepicker.setKey('Aj0NKus78Tna46Cgz3Qz4z');
 
