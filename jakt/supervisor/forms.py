@@ -47,8 +47,11 @@ class EmailForm (forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 class BartendProfileForm (forms.ModelForm):
+    birthday = forms.DateField(input_formats=["%m/%d/%Y"])
     class Meta:
         model = BartendProfile
+        exclude = ('owner',)
 class BarProfileForm (forms.ModelForm):
     class Meta:
         model = BarProfile
+        exclude = ('owner',)
