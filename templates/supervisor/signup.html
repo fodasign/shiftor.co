@@ -7,24 +7,24 @@
     <h4 class="uppercase centered">Bar Employee Signup</h4>
     <!-- <div class="span12"> -->
         <center>
-        <form>
+        <form method="POST">
+            {% csrf_token %}
             <input type="text" placeholder="first name" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" name="first_name"></input><br>
             <input type="text" placeholder="last name" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" name="last_name"></input><br>
 
-            <input type="text" placeholder="email" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
+            <input type="text" placeholder="email" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" name="email"></input><br>
 
-            <input type="password" placeholder="password" class="span4 input-large uppercase" style="text-align:center"></input>
+            <input type="password" placeholder="password" class="span4 input-large uppercase" style="text-align:center" name="password"></input>
 
             <br><br><center><button type="submit" class="open-button">Sign Up</button></center>
         </form>
         OR
-        <br><br><center><a href="" class="open-button">
+        <br><br><center><a href="{% url 'sv-login-out' out='facebook' %}" class="open-button">
         Connect with Facebook</a><br><br>
-        <p>Have an account? <a href="">Log In</a></p>
+        <p>Have an account? <a href="{% url 'sv-login' %}">Log In</a></p>
         <p>Are you a bar manager? <a href="">Sign Up Here</a></p>
         </center>
     <!-- </div> -->
 </div>
 
 {% endblock %}
-

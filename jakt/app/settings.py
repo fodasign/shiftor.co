@@ -10,10 +10,16 @@ def set_from_dict (d, *args):
             new[k] = d.get(k)
     globals().update(new)
 
-INTERNAL_IPS = ("127.0.0.1", "0.0.0.0",)
+# INTERNAL_IPS = ("127.0.0.1", "0.0.0.0",)
+class AllIps ():
+    def __init__ (self):
+        pass
+    def __contains__ (self, ip):
+        return True
+INTERNAL_IPS = AllIps()
 
 # Switch out the user model
-# AUTH_USER_MODEL = 'supervisor.User'
+AUTH_USER_MODEL = 'supervisor.User'
 
 DEBUG = False
 if os.environ.get("DEBUG", None) is not None:
@@ -23,6 +29,13 @@ TEMPLATE_DEBUG = DEBUG
 ALLOW_SIGNUP = True
 if os.environ.get("ALLOW_SIGNUP", True) is not True:
     ALLOW_SIGNUP = False
+
+BUGSNAG = {
+    "api_key": os.environ.get("BUGSNAG_KEY", None),
+    "project_root": os.path.abspath(""),
+    "notify_release_stages" : ["production", "staging"],
+    "release_stage" : os.environ.get("BUGSNAG_STAGE", "production")
+}
 
 CACHES = {
     'default': {
@@ -49,6 +62,7 @@ MANAGERS = ADMINS
 # Singly stuff
 SINGLY_CLIENT_ID = os.environ.get("SINGLY_CLIENT_ID")
 SINGLY_CLIENT_SECRET = os.environ.get("SINGLY_CLIENT_SECRET")
+SINGLY_URL = os.environ.get("SINGLY_URL")
 
 # Email
 set_from_dict(os.environ, "EMAIL_BACKEND", "EMAIL_HOST", "SENDGRID_USERNAME", "SENDGRID_PASSWORD", "EMAIL_PORT")
@@ -74,7 +88,7 @@ if os.environ.get("DATABASE_URL", None):
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = [ "0.0.0.0:8007" ]
+ALLOWED_HOSTS = [ "0.0.0.0:9004" ]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -142,7 +156,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = None
+SECRET_KEY = "#4r+j)fi(vmqegmx+7jea8$u*p%491-%e1=(!aga$@5v-g9sjf15b+%dy!9zfsn!pzrqsqe5)bg"
 if not DEBUG and not SECRET_KEY:
     raise ImproperlyConfigured("No secret key set for new project.")
 elif not SECRET_KEY:
@@ -159,7 +173,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
@@ -188,6 +202,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.admin',
     'south',
+    'supervisor',
     'frontend',
     'app',
 )

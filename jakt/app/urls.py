@@ -12,5 +12,6 @@ handler403 = "frontend.views.forbidden_error"
 urlpatterns = patterns('',
     # Routes
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^shift/', include('supervisor.urls')),
     url(r'^',       include('frontend.urls')),
 )
