@@ -8,7 +8,34 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from utility import annoying as a
 
+class User (AbstractUser):
+    """Extended user model."""
+
+    timezone = models.CharField(max_length=255, default="America/New_York")
+
+    #: Singly account id
+    singly_id = models.CharField(max_length=36, verbose_name="singly id", blank=True, null=True, unique=True, db_index=True, help_text="Automatically added when someone signs in or registers.")
+
+    #: Singly ``access_token`` that is used to make requests.
+    singly_token = models.CharField(max_length=255, verbose_name="singly access token", blank=True, null=True, help_text="Automatically added during signp.")
+
+    is_bar = models.BooleanField(default=False)
+    is_bartend = models.BooleanField(default=False)
+
+    def __unicode__ (self):
+        return u"{0} {1}".format(self.first_name, self.last_name)
+
+    class Meta:
+        ordering = ["-date_joined"]
+
+    def get_profile (self):
+        Profile = BartendProfile
+        if self.is_bar:
+            Profile = BarProfile
+        return a.get_or_none(Profile, owner=self)
+
 class BartendProfile (models.Model):
+    owner = models.ForeignKey(User)
     gender = models.CharField(max_length=255, choices=(("male", "Male"), ("female", "Female")))
     birthday = models.DateField()
     city = models.CharField(max_length=255)
@@ -56,6 +83,7 @@ class BartendProfile (models.Model):
     pitch = models.TextField(verbose_name="Elevator Speech")
 
 class BarProfile (models.Model):
+    owner = models.ForeignKey(User)
     venue_name = models.CharField(max_length=255)
     email = models.EmailField()
     website = models.CharField(max_length=255)
@@ -74,25 +102,3 @@ class BarProfile (models.Model):
     facebook_link = models.CharField(max_length=255, null=True, blank=True)
     twitter_link = models.CharField(max_length=255, null=True, blank=True)
     instagram_link = models.CharField(max_length=255, null=True, blank=True)
-
-class User (AbstractUser):
-    """Extended user model."""
-
-    timezone = models.CharField(max_length=255, default="America/New_York")
-
-    #: Singly account id
-    singly_id = models.CharField(max_length=36, verbose_name="singly id", blank=True, null=True, unique=True, db_index=True, help_text="Automatically added when someone signs in or registers.")
-
-    #: Singly ``access_token`` that is used to make requests.
-    singly_token = models.CharField(max_length=255, verbose_name="singly access token", blank=True, null=True, help_text="Automatically added during signp.")
-
-    is_bar = models.BooleanField(default=False)
-    is_bartend = models.BooleanField(default=False)
-    bartend_profile = models.ForeignKey(BartendProfile, null=True, blank=True)
-    bar_profile = models.ForeignKey(BarProfile, null=True, blank=True)
-
-    def __unicode__ (self):
-        return u"{0} {1}".format(self.first_name, self.last_name)
-
-    class Meta:
-        ordering = ["-date_joined"]

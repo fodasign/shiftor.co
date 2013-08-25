@@ -21,7 +21,7 @@ from utility import emails
 
 # Internal imports
 from . import auth
-from .models import User
+from .models import User, BarProfile, BartendProfile
 from .forms import EmailForm, LoginForm, SignupForm, BarProfileForm, BartendProfileForm
 
 def next (request):
@@ -33,7 +33,7 @@ def next (request):
     if request.user.is_authenticated():
         if request.user.email == "blank@twitterlogin.com" or not request.user.password:
             default = reverse("supervisor.views.add_email")
-        if not request.user.bartend_profile or not request.user.bar_profile:
+        if not request.user.get_profile():
             default = reverse("supervisor.views.complete_profile")
     return HttpResponseRedirect(request.session.get("next-url", default))
 
@@ -87,6 +87,10 @@ def complete_profile (request):
     form = FormClass()
     if request.POST:
         form = FormClass(request.POST)
+        if form.is_valid():
+            model = form.save(commit=False)
+            model.owner = request.user
+            model.save()
     data["form"] = form
     return render(request, template, data)
 
