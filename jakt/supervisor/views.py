@@ -22,7 +22,7 @@ from utility import emails
 # Internal imports
 from . import auth
 from .models import User
-from .forms import EmailForm, LoginForm, SignupForm
+from .forms import EmailForm, LoginForm, SignupForm, BarProfileForm, BartendProfileForm
 
 def next (request):
     """Method of dubious dependability that handles a redirection."""
@@ -73,6 +73,22 @@ def signup (request):
             return next(request)
     data["form"] = form
     return render(request, "supervisor/signup.html", data)
+
+def complete_profile (request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect("/")
+
+    data = {}
+    FormClass = BartendProfileForm
+    template = "supervisor/complete_profile_bartender.html"
+    if request.user.is_bar:
+        FormClass = BarProfileForm
+        template = "supervisor/complete_profile_bar.html"
+    form = FormClass()
+    if request.POST:
+        form = FormClass(request.POST)
+    data["form"] = form
+    return render(request, template, data)
 
 def logout (request):
     auth.logout(request)

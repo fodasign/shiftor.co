@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 from django import forms
 from django.contrib.auth import authenticate as dj_authenticate, login as dj_login
 
-from .models import User
+from .models import User, BartendProfile, BarProfile
 from utility.annoying import get_or_none as gon
 
 class LoginForm (forms.Form):
@@ -45,3 +45,10 @@ class SignupForm (forms.Form):
 class EmailForm (forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+class BartendProfileForm (forms.ModelForm):
+    class Meta:
+        model = BartendProfile
+class BarProfileForm (forms.ModelForm):
+    class Meta:
+        model = BarProfile
