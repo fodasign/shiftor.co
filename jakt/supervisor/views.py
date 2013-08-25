@@ -33,6 +33,8 @@ def next (request):
     if request.user.is_authenticated():
         if request.user.email == "blank@twitterlogin.com" or not request.user.password:
             default = reverse("supervisor.views.add_email")
+        if not request.user.bartend_profile or not request.user.bar_profile:
+            default = reverse("supervisor.views.complete_profile")
     return HttpResponseRedirect(request.session.get("next-url", default))
 
 def login (request, out=None):
@@ -58,6 +60,10 @@ def signup (request):
         if form.is_valid():
             user = User(username=form.cleaned_data.get("email"), **form.cleaned_data)
             user.set_password(form.cleaned_data.get("password"))
+            if request.session.get("is_bar", False):
+                user.is_bar = True
+            else:
+                user.is_bartend = True
             user.save()
             user = dj_authenticate(username=user.username, password=form.cleaned_data.get("password"))
             dj_login(request, user)

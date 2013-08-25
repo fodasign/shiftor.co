@@ -16,9 +16,15 @@
                     <li {% if current == "contact" %} class="active" {% endif %}>
                         <a href="{% url 'contact' %}">Are You a Bar Manager?</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="">
-                        <a href="">Login</a>
+                        <a href="{% url 'sv-logout' %}">Logout</a>
                     </li>
+                    {% else %}
+                    <li class="">
+                        <a href="{% url 'sv-login' %}">Login</a>
+                    </li>
+                    {% endif %}
                     <!-- <li class="" style="line-height: 0px; margin-top: 8px">
                         <a href="" class="open-button">Sign Up</a>
                     </li> -->
