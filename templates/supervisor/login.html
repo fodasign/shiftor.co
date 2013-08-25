@@ -8,6 +8,18 @@
         <center>
         <form method="POST">
             {% csrf_token %}
+            <ul>
+            {% for e in form.non_field_errors %}
+                <li>{{ e }}</li>
+            {% endfor %}
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for e in field.errors %}
+                        <li>{{ field.label }} - {{ e }}</li>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            </ul>
             <input type="text" placeholder="EMAIL" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" name="username"></input><br>
             <input type="password" placeholder="PASSWORD" class="span4 input-large uppercase" style="text-align:center" name="password"></input>
             <br><br><center><button type="submit" class="open-button">Log in</button></center>
