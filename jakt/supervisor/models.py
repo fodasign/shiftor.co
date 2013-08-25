@@ -61,7 +61,6 @@ class BarProfile (models.Model):
     website = models.CharField(max_length=255)
     logo = models.CharField(max_length=255)
     address_1 = models.CharField(max_length=255)
-    address_2 = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     photo = models.CharField(max_length=255)
