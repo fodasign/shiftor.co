@@ -14,7 +14,7 @@ class BartendProfile (models.Model):
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     student = models.BooleanField(verbose_name="Are you a student?")
-    phone_number = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255, null=True, blank=True)
     photo = models.CharField(max_length=255)
 
     wk_name_1 = models.CharField(max_length=255, verbose_name="Work Place Name #1", null=True, blank=True)
