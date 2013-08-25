@@ -8,10 +8,10 @@
     <!-- <div class="span12"> -->
         <center>
         <form>
-            <input type="text" placeholder="name" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
-            <input type="text" placeholder="venue name" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
-            <input type="text" placeholder="EMAIL" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
-            <input type="password" placeholder="PASSWORD" class="span4 input-large uppercase" style="text-align:center"></input>
+            <input type="text" placeholder="name" name="name" value="{{ form.name.value }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
+            <input type="text" placeholder="venue name" name="venue_name" value="{{ form.venue_name.value }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
+            <input type="text" placeholder="EMAIL" name="email" value="{{ form.email.value }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
+            <input type="password" placeholder="PASSWORD" name="password" value="" class="span4 input-large uppercase" style="text-align:center"></input>
             <br><br><center><a href="" class="open-button">Sign up</a></center>
         </form>
         <p>Have an account? <a href="">Log In</a></p>
