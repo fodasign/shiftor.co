@@ -7,10 +7,26 @@
     <h3 class="centered">Complete Profile</h3>
     <!-- <div class="span12"> -->
         <center>
-        <form class="complete-profile-form">
-            <input type="text" placeholder="Name" name="name" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
+        <form class="complete-profile-form" method="POST">
 
-            <input type="text" placeholder="Email" name="email" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
+            {% csrf_token %}
+            <ul class="span4 offset4">
+            {% for e in form.non_field_errors %}
+                <li>{{ e }}</li>
+            {% endfor %}
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for e in field.errors %}
+                        <li style="color:red">{{ field.label }} - {{ e }}</li>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            </ul>
+
+
+            <input type="text" placeholder="Name" name="name" value="{{ form.name.value|default_if_none:"" }}" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
+
+            <input type="text" placeholder="Email" name="email" value="{{ form.email.value|default_if_none:"" }}" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
 
             <select>
             	<option value="" disabled selected>-Gender-</option>
@@ -22,7 +38,7 @@
             <fieldset class="js-birthday-picker"></fieldset>
 
             <h5>Location</h5>
-            <input type="text" placeholder="City" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
+            <input type="text" placeholder="City" name="city" value="{{ form.city.value|default_if_none:"" }}" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
             <select class="input-medium bfh-states" data-country="US" data-state="NY"></select><br>
 
             <h5>Are you a student?<h5>
@@ -32,8 +48,8 @@
                 <option>No</option>
             </select><br>
 
- 			<h5>Phone Number</h5>
-            <input type="text" class="input-medium bfh-phone span4" data-format="+1 (ddd) ddd-dddd"></input><br>
+ 			<h5>Phone Number <br>(so we can text you job opennings)</h5>
+            <input type="text" name="phone_number" value="{{ form.phone_number.value|default_if_none:"" }}" class="input-medium bfh-phone span4" data-format="+1 (ddd) ddd-dddd"></input><br>
 
             <h5>Photo</h5>
           <!--   <img src="http://placehold.it/100x100" class="img-polaroid">
@@ -161,7 +177,7 @@
 
 
             <h5>Elevator Speech</h5>
-            <textarea class="span5" maxlength="300" rows="5" placeholder="Please provide a short bio about yourself. Limit of 300 characters."></textarea>
+            <textarea class="span5" maxlength="300" rows="5" name="pitch" value="{{ form.pitch.value|default_if_none:"" }}" placeholder="Please provide a short bio about yourself. Limit of 300 characters."></textarea>
 
 
 

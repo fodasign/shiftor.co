@@ -10,15 +10,14 @@
         <form method="POST">
             {% csrf_token %}
 
-
-            <ul>
+            <ul class="span4 offset4">
             {% for e in form.non_field_errors %}
                 <li>{{ e }}</li>
             {% endfor %}
             {% for field in form %}
                 {% if field.errors %}
                     {% for e in field.errors %}
-                        <li>{{ field.label }} - {{ e }}</li>
+                        <li style="color:red">{{ field.label }} - {{ e }}</li>
                     {% endfor %}
                 {% endif %}
             {% endfor %}

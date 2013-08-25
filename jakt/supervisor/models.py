@@ -63,7 +63,7 @@ class BarProfile (models.Model):
     address_1 = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
-    photo = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255)
     venue_type = models.CharField(max_length=255, choices=(
         ("sports", "Sports Bar/Pub"),
         ("wine", "Wine Bar"),

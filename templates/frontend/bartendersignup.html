@@ -8,12 +8,28 @@
     <!-- <div class="span12"> -->
         <center>
         <form method="POST">
-            <input type="text" placeholder="first name" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" name="first_name"></input><br>
-            <input type="text" placeholder="last name" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" name="last_name"></input><br>
 
-            <input type="text" placeholder="email" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" name="email"></input><br>
+            {% csrf_token %}
+            <ul class="span4 offset4">
+            {% for e in form.non_field_errors %}
+                <li>{{ e }}</li>
+            {% endfor %}
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for e in field.errors %}
+                        <li style="color:red">{{ field.label }} - {{ e }}</li>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            </ul>
 
-            <input type="password" placeholder="password" class="span4 input-large uppercase" style="text-align:center" name="password"></input>
+            <input type="text" placeholder="first name" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" value="{{ form.first_name.value }}" name="first_name"></input><br>
+
+            <input type="text" placeholder="last name" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" value="{{ form.last_name.value }}" name="last_name"></input><br>
+
+            <input type="text" placeholder="email" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" value="{{ form..value }}" name="email"></input><br>
+
+            <input type="password" placeholder="password" class="span4 input-large uppercase" style="text-align:center" value="{{ form..value }}" name="password"></input>
 
             <br><br><center><button type="submit" class="open-button">Sign Up</button></center>
         </form>
