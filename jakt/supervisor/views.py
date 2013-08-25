@@ -45,15 +45,18 @@ def login (request, out=None):
         return next(request)
     if out:
         return HttpResponseRedirect(singly.http.connect(out, redirect_uri=request.build_absolute_uri(reverse("sv-bounce"))))
+    data = {}
     form = LoginForm()
     if request.POST:
         form = LoginForm(request.POST)
         if form.is_valid():
             dj_login(request, form.cleaned_data.get("user"))
             return next(request)
-    return render(request, "supervisor/login.html")
+    data["form"] = form
+    return render(request, "supervisor/login.html", data)
 
 def signup (request):
+    data = {}
     form = SignupForm()
     if request.POST:
         form = SignupForm(request.POST)
@@ -68,7 +71,8 @@ def signup (request):
             user = dj_authenticate(username=user.username, password=form.cleaned_data.get("password"))
             dj_login(request, user)
             return next(request)
-    return render(request, "supervisor/signup.html")
+    data["form"] = form
+    return render(request, "supervisor/signup.html", data)
 
 def logout (request):
     auth.logout(request)
