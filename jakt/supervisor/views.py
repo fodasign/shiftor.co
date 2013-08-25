@@ -85,12 +85,14 @@ def complete_profile (request):
         FormClass = BarProfileForm
         template = "supervisor/complete_profile_bar.html"
     form = FormClass()
+    logger.info(request.POST)
     if request.POST:
         form = FormClass(request.POST)
         if form.is_valid():
             model = form.save(commit=False)
             model.owner = request.user
             model.save()
+            return next(request)
     data["form"] = form
     return render(request, template, data)
 

@@ -23,9 +23,7 @@
             {% endfor %}
             </ul>
 
-            <input type="text" placeholder="Name" name="name" value="{{ form.name.value|default_if_none:"" }}" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
-
-            <input type="text" placeholder="Email" name="email" value="{{ form.email.value|default_if_none:"" }}" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
+            <br class="clearfix">
 
             <h5>Gender</h5>
             {{ form.gender }}
@@ -108,7 +106,7 @@
             <h5>Elevator Speech</h5>
             <textarea class="span5" maxlength="300" rows="5" name="pitch" value="{{ form.pitch.value|default_if_none:"" }}" placeholder="Please provide a short bio about yourself. Limit of 300 characters."></textarea>
 
-            <br><br><center><a href="" class="open-button">Submit</a></center>
+            <br><br><center><button type="submit" class="open-button">Submit</button></center>
         </form>
     <!-- </div> -->
 </div>
