@@ -9,18 +9,20 @@
 
         <div class="span3 box" id="filters">
             <p class="title">Gender</p>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;Male<br>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;Female
+
+            <input type="checkbox" class="data-gender" name="gender[]" value="male">&nbsp;Male<br>
+            <input type="checkbox" class="data-gender" name="gender[]" value="female">&nbsp;Female
             <hr>
+
             <p class="title">Licensed</p>
-            <input type="radio" name="sex" value="male">&nbsp;Yes<br>
-            <input type="radio" name="sex" value="female">&nbsp;No
+            <input type="radio" class="data-licensed" name="" value="yes">&nbsp;Yes<br>
+            <input type="radio" class="data-licensed" name="" value="no">&nbsp;No
             <hr>
             <p class="title">Age</p>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;18-22<br>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;23-29<br>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;30-39<br>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;40+<br>
+            <input type="checkbox" class="data-age" name="" value="1">&nbsp;18-22<br>
+            <input type="checkbox" class="data-age" name="" value="2">&nbsp;23-29<br>
+            <input type="checkbox" class="data-age" name="" value="3">&nbsp;30-39<br>
+            <input type="checkbox" class="data-age" name="" value="4">&nbsp;40+<br>
            <!--  <select class="span2">
                 <option>18-22</option>
                 <option>23-29</option>
@@ -29,25 +31,25 @@
             </select> -->
             <hr>
             <p class="title">Wokring Atmosphere</p>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;Sports Bar/Pub<br>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;Lounge<br>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;Club<br>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;High-End Bar/Restaurant<br>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;Wine Bar<br>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;Catering Hall/Event Spaces
+            <input type="checkbox" class="data-working-atmosphere" name="" value="">&nbsp;Sports Bar/Pub<br>
+            <input type="checkbox" class="data-working-atmosphere" name="" value="">&nbsp;Lounge<br>
+            <input type="checkbox" class="data-working-atmosphere" name="" value="">&nbsp;Club<br>
+            <input type="checkbox" class="data-working-atmosphere" name="" value="">&nbsp;High-End Bar/Restaurant<br>
+            <input type="checkbox" class="data-working-atmosphere" name="" value="">&nbsp;Wine Bar<br>
+            <input type="checkbox" class="data-working-atmosphere" name="" value="">&nbsp;Catering Hall/Event Spaces
             <hr>
             <p class="title">Availability</p>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;Monday<br>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;Tuesday<br>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;Wednesday<br>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;Thursday<br>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;Friday<br>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;Saturday<br>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;Sunday
+            <input type="checkbox" class="data-availability" name="" value="">&nbsp;Monday<br>
+            <input type="checkbox" class="data-availability" name="" value="">&nbsp;Tuesday<br>
+            <input type="checkbox" class="data-availability" name="" value="">&nbsp;Wednesday<br>
+            <input type="checkbox" class="data-availability" name="" value="">&nbsp;Thursday<br>
+            <input type="checkbox" class="data-availability" name="" value="">&nbsp;Friday<br>
+            <input type="checkbox" class="data-availability" name="" value="">&nbsp;Saturday<br>
+            <input type="checkbox" class="data-availability" name="" value="">&nbsp;Sunday
             <hr>
             <p class="title">Occupation</p>
-            <input type="checkbox" name="vehicle" value="Car">&nbsp;Student<br>
-            <input type="checkbox" name="vehicle" value="Bike">&nbsp;Professional<br>
+            <input type="checkbox" class="data-occupation" name="" value="Car">&nbsp;Student<br>
+            <input type="checkbox" class="data-occupation" name="" value="Bike">&nbsp;Professional<br>
         </div>
 
         <div class="span9" id="results">
@@ -70,7 +72,7 @@
             <div class="row">
 
 
-                <div class="span9 box" data-visible="true" data-id="1">
+                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -91,7 +93,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-id="2">
+                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -111,7 +113,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="false" data-id="3">
+                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -131,7 +133,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-id="4">
+                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -151,7 +153,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-id="5">
+                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -171,7 +173,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-id="6">
+                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -191,7 +193,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-id="7">
+                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -211,7 +213,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-id="8">
+                <div class="span9 box" data-visible="true" data-gender="female" data-licensed="no">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -231,7 +233,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-id="9">
+                <div class="span9 box" data-visible="true" data-gender="female" data-licensed="no">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -251,7 +253,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-id="10">
+                <div class="span9 box" data-visible="true" data-gender="female" data-licensed="no">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -519,49 +521,92 @@ $(function () {
     // Pagination
 
     // Get the number of visible elements
-    var totalVisible = $(".box[data-visible='true']").length
-    var numberPerPage = 5
-    var totalPages = totalVisible / numberPerPage
-    if (totalVisible % numberPerPage > 0) totalPages++
-    console.log(totalVisible)
+    var numberPerPage = 3,
+        totalVisible,
+        totalPages,
+        options
 
-    var result = $(".box", $("#results"))
-    var visibleIds = []
-    var counter = 1
-    var page = 1
+    var $result = $(".box", $("#results"))
+
+    totalPagesShown()
+    addPageNumbers()
+    initializePaginator()
+
+    function totalPagesShown () {
+        totalVisible = $(".box[data-visible='true']", $("#results")).length
+        totalPages = totalVisible / numberPerPage
+        if (totalVisible % numberPerPage > 0) totalPages++
+    }
 
     // Add the page number to each result
-    $.each(result, function () {
-        if ( $(this).attr("data-visible") == "true" ) {
-            $(this).attr("data-page", page)
-            counter++
-            if (counter >= (numberPerPage + 1)) {
-                counter = 1
-                page++
+    function addPageNumbers () {
+        var counter = 1,
+            page = 1
+
+        $.each($result, function () {
+            if ( $(this).attr("data-visible") == "true" ) {
+                $(this).attr("data-page", page)
+                counter++
+                if (counter >= (numberPerPage + 1)) {
+                    counter = 1
+                    page++
+                }
+            }
+
+            // // on initial load only show items with page of 1
+            if ( $(this).attr("data-page") != 1 ) {
+                $(this).css("display", "none")
+            }
+        })
+    }
+
+    function initializePaginator () {
+        options = {
+            currentPage: 1,
+            totalPages: totalPages,
+            numberOfPages: 5, // number of pagination to show
+            onPageClicked: function (e, originalEvent, type, page) {
+                console.log("Page item clicked, type: "+type+" page: "+page)
+                $.each($result, function () {
+                    if ( $(this).attr("data-page") != page ) {
+                        $(this).css("display", "none")
+                    } else $(this).css("display", "")
+                })
             }
         }
 
-        // // on initial load only show items with page of 1
-        if ( $(this).attr("data-page") != 1 ) {
-            $(this).css("display", "none")
-        }
-    })
-
-    var options = {
-        currentPage: 1,
-        totalPages: totalPages,
-        numberOfPages: 5,
-        onPageClicked: function (e, originalEvent, type, page) {
-            console.log("Page item clicked, type: "+type+" page: "+page)
-            $.each(result, function () {
-                if ( $(this).attr("data-page") != page ) {
-                    $(this).css("display", "none")
-                } else $(this).css("display", "")
-            })
-        }
+        $('.pagination').bootstrapPaginator(options)
     }
 
-    $('.pagination').bootstrapPaginator(options)
+
+    $("input.data-gender").on("change", function () {
+        console.log("changed")
+        // var genderSelected = $("input[name=gender]:checked").val()
+        var genderSelected = $('input[name="gender[]"]:checked')
+        if (genderSelected.length == 1) {
+            $(genderSelected).each(function (i, el) {
+                console.log("element", el)
+                var genderValue = $(el).attr("value")
+                console.log(genderValue)
+                $.each($result, function () {
+                    if ($(this).attr("data-gender") == genderValue) {
+                        $(this).attr("data-visible", true)
+                    } else $(this).attr("data-visible", false)
+                })
+            })
+        } else {
+            console.log(genderSelected.length)
+            $result.attr("data-visible", true)
+        }
+
+
+        // $(".box[data-visible='true']", $("#results"))
+
+        totalPagesShown()
+        addPageNumbers()
+        initializePaginator()
+    })
+
 
 
 
