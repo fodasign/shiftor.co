@@ -15,8 +15,8 @@
             <hr>
 
             <p class="title">Licensed</p>
-            <input type="radio" class="data-licensed" name="" value="yes">&nbsp;Yes<br>
-            <input type="radio" class="data-licensed" name="" value="no">&nbsp;No
+            <input type="checkbox" class="data-licensed" name="licensed[]" value="yes">&nbsp;Yes<br>
+            <input type="checkbox" class="data-licensed" name="licensed[]" value="no">&nbsp;No
             <hr>
             <p class="title">Age</p>
             <input type="checkbox" class="data-age" name="" value="1">&nbsp;18-22<br>
@@ -54,7 +54,7 @@
 
         <div class="span9" id="results">
             <div class="row">
-                <p class="span3" style="margin-top:10px; margin-bottom: -10px">Found <span class="teal">10</span> Matching Profiles</p>
+                <p class="span3" style="margin-top:10px; margin-bottom: -10px">Found <span class="teal" id="visible-count"></span> Matching Profiles</p>
                 <span class="pagination" style="margin: 0px">
                      <!--  <ul>
                         <li><a href="#">Prev</a></li>
@@ -72,7 +72,7 @@
             <div class="row">
 
 
-                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
+                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="no">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -531,6 +531,7 @@ $(function () {
     totalPagesShown()
     addPageNumbers()
     initializePaginator()
+    visibleCount()
 
     function totalPagesShown () {
         totalVisible = $(".box[data-visible='true']", $("#results")).length
@@ -578,10 +579,15 @@ $(function () {
         $('.pagination').bootstrapPaginator(options)
     }
 
+    function visibleCount () {
+        $("#visible-count").text($(".box[data-visible='true']").length)
+    }
+
 
     $("input.data-gender").on("change", function () {
         console.log("changed")
-        // var genderSelected = $("input[name=gender]:checked").val()
+
+        // Check the gender
         var genderSelected = $('input[name="gender[]"]:checked')
         if (genderSelected.length == 1) {
             $(genderSelected).each(function (i, el) {
@@ -599,13 +605,39 @@ $(function () {
             $result.attr("data-visible", true)
         }
 
+        totalPagesShown()
+        addPageNumbers()
+        initializePaginator()
+        visibleCount()
+    })
 
-        // $(".box[data-visible='true']", $("#results"))
+    $("input.data-licensed").on("change", function () {
+        console.log("changed")
+
+        // Check the license
+        var licensedSelected = $('input[name="licensed[]"]:checked')
+        if (licensedSelected.length == 1) {
+            $(licensedSelected).each(function (i, el) {
+                console.log("element", el)
+                var licensedValue = $(el).attr("value")
+                console.log(licensedValue)
+                $.each($result, function () {
+                    if ($(this).attr("data-licensed") == licensedValue) {
+                        $(this).attr("data-visible", true)
+                    } else $(this).attr("data-visible", false)
+                })
+            })
+        } else {
+            console.log(licensedSelected.length)
+            $result.attr("data-visible", true)
+        }
 
         totalPagesShown()
         addPageNumbers()
         initializePaginator()
+        visibleCount()
     })
+
 
 
 
