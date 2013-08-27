@@ -608,9 +608,17 @@ $(function () {
             if ( (genderSelected != "all") && ($(this).attr("data-gender") != genderSelected) ) {
                 $(this).attr("data-visible", false)
             } else {
+
                 if ( (licensedSelected != "all") && ($(this).attr("data-licensed") != licensedSelected) ) {
                     $(this).attr("data-visible", false)
+                } else {
+
+                    if ( (occupationSelected != "all") && ($(this).attr("data-occupation") != occupationSelected) ) {
+                        $(this).attr("data-visible", false)
+                    }
+
                 }
+
             }
 
         })
