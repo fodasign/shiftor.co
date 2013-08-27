@@ -10,14 +10,17 @@
         <div class="span3 box" id="filters">
             <p class="title">Gender</p>
 
-            <input type="checkbox" class="data-gender" name="gender[]" value="male">&nbsp;Male<br>
-            <input type="checkbox" class="data-gender" name="gender[]" value="female">&nbsp;Female
+            <input type="radio" class="data-gender" id="" name="gender" value="all" checked>&nbsp;Both<br>
+            <input type="radio" class="data-gender" id="male" name="gender" value="male">&nbsp;Male<br>
+            <input type="radio" class="data-gender" id="female" name="gender" value="female">&nbsp;Female
             <hr>
 
             <p class="title">Licensed</p>
-            <input type="checkbox" class="data-licensed" name="licensed[]" value="yes">&nbsp;Yes<br>
-            <input type="checkbox" class="data-licensed" name="licensed[]" value="no">&nbsp;No
+            <input type="radio" class="data-licensed" id="" name="licensed" value="all" checked>&nbsp;Both<br>
+            <input type="radio" class="data-licensed" id="licensed" name="licensed" value="yes">&nbsp;Yes<br>
+            <input type="radio" class="data-licensed" id="not_licensed" name="licensed" value="no">&nbsp;No
             <hr>
+
             <p class="title">Age</p>
             <input type="checkbox" class="data-age" name="" value="1">&nbsp;18-22<br>
             <input type="checkbox" class="data-age" name="" value="2">&nbsp;23-29<br>
@@ -47,9 +50,12 @@
             <input type="checkbox" class="data-availability" name="" value="">&nbsp;Saturday<br>
             <input type="checkbox" class="data-availability" name="" value="">&nbsp;Sunday
             <hr>
+
             <p class="title">Occupation</p>
-            <input type="checkbox" class="data-occupation" name="" value="Car">&nbsp;Student<br>
-            <input type="checkbox" class="data-occupation" name="" value="Bike">&nbsp;Professional<br>
+            <input type="radio" class="data-occupation" name="occupation" value="all" checked>&nbsp;Both<br>
+            <input type="radio" class="data-occupation" name="occupation" value="student">&nbsp;Student<br>
+            <input type="radio" class="data-occupation" name="occupation" value="professional">&nbsp;Professional<br>
+
         </div>
 
         <div class="span9" id="results">
@@ -72,7 +78,7 @@
             <div class="row">
 
 
-                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="no">
+                <div class="span9 box" data-visible="true" data-occupation="student" data-gender="male" data-licensed="no">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -93,7 +99,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
+                <div class="span9 box" data-visible="true" data-occupation="student" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -113,7 +119,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
+                <div class="span9 box" data-visible="true" data-occupation="student" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -133,7 +139,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
+                <div class="span9 box" data-visible="true" data-occupation="student" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -153,7 +159,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
+                <div class="span9 box" data-visible="true" data-occupation="student" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -173,7 +179,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
+                <div class="span9 box" data-visible="true" data-occupation="professional" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -193,7 +199,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-gender="male" data-licensed="yes">
+                <div class="span9 box" data-visible="true" data-occupation="professional" data-gender="male" data-licensed="yes">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -213,7 +219,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-gender="female" data-licensed="no">
+                <div class="span9 box" data-visible="true" data-occupation="student" data-gender="female" data-licensed="no">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -233,7 +239,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-gender="female" data-licensed="no">
+                <div class="span9 box" data-visible="true" data-occupation="student" data-gender="female" data-licensed="no">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -253,7 +259,7 @@
                     </div>
                 </div>
 
-                <div class="span9 box" data-visible="true" data-gender="female" data-licensed="no">
+                <div class="span9 box" data-visible="true" data-occupation="student" data-gender="female" data-licensed="no">
                     <div class="row">
                         <div class="span2">
                             <img src="http://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill/anthonytumbiolo.jpg" class="img-polaroid">
@@ -562,6 +568,7 @@ $(function () {
     }
 
     function initializePaginator () {
+        console.log("total pages", totalPages)
         options = {
             currentPage: 1,
             totalPages: totalPages,
@@ -581,65 +588,41 @@ $(function () {
 
     function visibleCount () {
         $("#visible-count").text($(".box[data-visible='true']").length)
+        return $(".box[data-visible='true']").length
     }
 
 
-    $("input.data-gender").on("change", function () {
-        console.log("changed")
+    // Check the gender
+    $("#filters input").on("change", function () {
 
-        // Check the gender
-        var genderSelected = $('input[name="gender[]"]:checked')
-        if (genderSelected.length == 1) {
-            $(genderSelected).each(function (i, el) {
-                console.log("element", el)
-                var genderValue = $(el).attr("value")
-                console.log(genderValue)
-                $.each($result, function () {
-                    if ($(this).attr("data-gender") == genderValue) {
-                        $(this).attr("data-visible", true)
-                    } else $(this).attr("data-visible", false)
-                })
-            })
-        } else {
-            console.log(genderSelected.length)
-            $result.attr("data-visible", true)
-        }
 
-        totalPagesShown()
-        addPageNumbers()
-        initializePaginator()
-        visibleCount()
-    })
+        var genderSelected = $("input[name=gender]:checked").val()
+        var licensedSelected = $("input[name=licensed]:checked").val()
+        var occupationSelected = $("input[name=occupation]:checked").val()
 
-    $("input.data-licensed").on("change", function () {
-        console.log("changed")
+        $.each($result, function () {
 
-        // Check the license
-        var licensedSelected = $('input[name="licensed[]"]:checked')
-        if (licensedSelected.length == 1) {
-            $(licensedSelected).each(function (i, el) {
-                console.log("element", el)
-                var licensedValue = $(el).attr("value")
-                console.log(licensedValue)
-                $.each($result, function () {
-                    if ($(this).attr("data-licensed") == licensedValue) {
-                        $(this).attr("data-visible", true)
-                    } else $(this).attr("data-visible", false)
-                })
-            })
-        } else {
-            console.log(licensedSelected.length)
-            $result.attr("data-visible", true)
-        }
+            $(this).attr("data-visible", true)
+            $(this).removeAttr("data-page")
+
+            if ( (genderSelected != "all") && ($(this).attr("data-gender") != genderSelected) ) {
+                $(this).attr("data-visible", false)
+            } else {
+                if ( (licensedSelected != "all") && ($(this).attr("data-licensed") != licensedSelected) ) {
+                    $(this).attr("data-visible", false)
+                }
+            }
+
+        })
 
         totalPagesShown()
         addPageNumbers()
-        initializePaginator()
-        visibleCount()
+        var count = visibleCount()
+        if (count != 0) {
+            initializePaginator()
+        }
+        $("li.active a").trigger("click")
     })
-
-
-
 
 
 })
