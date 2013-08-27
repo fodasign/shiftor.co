@@ -682,6 +682,32 @@ $(function () {
 
                                     } else $(this).attr("data-visible", false)
 
+                                } else {
+                                    // Check age
+                                    if (ageSelected.length > 0) {
+
+                                        var temp = false
+                                        for (i=0; i<ageSelected.length; i++) {
+                                            var dataAge = parseInt($(this).attr("data-age"))
+                                            if (ageSelected[i] == 1) {
+                                                if (dataAge <= 22) temp = true
+                                            }
+                                            if (ageSelected[i] == 2) {
+                                                if ( (dataAge >=23) && (dataAge <=29) ) temp = true
+                                            }
+                                            if (ageSelected[i] == 3) {
+                                                if ( (dataAge >=30) && (dataAge <=39) ) temp = true
+                                            }
+                                            if (ageSelected[i] == 4) {
+                                                if (dataAge >= 40 ) temp = true
+                                            }
+
+                                        }
+
+                                        if ( ! temp ) {
+                                            $(this).attr("data-visible", false)
+                                        }
+                                    }
                                 }
 
                             } else $(this).attr("data-visible", false)
