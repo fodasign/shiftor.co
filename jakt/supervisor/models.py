@@ -130,3 +130,7 @@ class BarProfile (models.Model):
     facebook_link = models.CharField(max_length=255, null=True, blank=True)
     twitter_link = models.CharField(max_length=255, null=True, blank=True)
     instagram_link = models.CharField(max_length=255, null=True, blank=True)
+
+    # Stripe
+    customer_id = models.CharField(max_length=30, null=True, blank=True)
+    card_4 = models.CharField(max_length=4, null=True, blank=True)

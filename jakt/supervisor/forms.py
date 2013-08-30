@@ -54,4 +54,4 @@ class BartendProfileForm (forms.ModelForm):
 class BarProfileForm (forms.ModelForm):
     class Meta:
         model = BarProfile
-        exclude = ('owner',)
+        exclude = ('owner', 'stripe_id', 'card_4')
