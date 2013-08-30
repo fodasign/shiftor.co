@@ -33,9 +33,9 @@ def next (request):
     if request.user.is_authenticated():
         if request.user.email == "blank@twitterlogin.com" or not request.user.password:
             default = reverse("supervisor.views.add_email")
-        if not request.user.get_profile():
+        elif not request.user.get_profile():
             default = reverse("supervisor.views.complete_profile")
-        if request.user.is_bartend and not request.user.get_phone_number():
+        elif request.user.is_bartend and not request.user.get_phone_number():
             default = reverse("tel.views.add_number")
     return HttpResponseRedirect(request.session.pop("next-url", default))
 

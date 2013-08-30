@@ -88,6 +88,28 @@ class BartendProfile (models.Model):
 
     pitch = models.TextField(verbose_name="Elevator Speech")
 
+    @property
+    def age (self):
+        today = date.today()
+        born = self.birthday
+        try:
+            birthday = born.replace(year=today.year)
+        except ValueError: # raised when birth date is February 29 and the current year is not a leap year
+            birthday = born.replace(year=today.year, day=born.day-1)
+        if birthday > today:
+            return today.year - born.year - 1
+        else:
+            return today.year - born.year
+
+    @property
+    def available_dates (self):
+        dates = ["mon","tue","wed","thu","fri","sat","sun"]
+        available = []
+        for d in dates:
+            if getattr(self, "available_{0}".format(d)):
+                available.push(d)
+        return ",".join(available)
+
 class BarProfile (models.Model):
     owner = models.ForeignKey(User)
     venue_name = models.CharField(max_length=255)

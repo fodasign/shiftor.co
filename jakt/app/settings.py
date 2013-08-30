@@ -30,6 +30,8 @@ ALLOW_SIGNUP = True
 if os.environ.get("ALLOW_SIGNUP", True) is not True:
     ALLOW_SIGNUP = False
 
+PAYWALL = os.environ.get("PAYWALL", False)
+
 BUGSNAG = {
     "api_key": os.environ.get("BUGSNAG_KEY", None),
     "project_root": os.path.abspath(""),

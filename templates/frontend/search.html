@@ -77,7 +77,9 @@
 
             <div class="row">
 
-
+                {% for p in profiles %}
+                <div class="span9 box" data-visible="true" data-age="{{ p.age }}" data-availability="{{ p.available_dates }}" data-workatm="h,e" data-occupation="student" data-gender="male" data-licensed="no">
+                {% endfor %}
                 <div class="span9 box" data-visible="true" data-age="22" data-availability="wed,thur,fri,sat,sun" data-workatm="h,e" data-occupation="student" data-gender="male" data-licensed="no">
                     <div class="row">
                         <div class="span2">

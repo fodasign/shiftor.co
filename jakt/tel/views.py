@@ -61,7 +61,7 @@ def verify_number (request, pk):
         if code and code.upper().strip() == number.verification_code:
             number.verified = True
             number.save()
-            sms.send(number, "Thanks! Any messages sent to this number will be added to your todo list. Texting ALL will send you all uncompleted items.")
+            sms.send(number, "Thanks! You can stop messages at any time by sending STOP")
             return HttpResponseRedirect(reverse("tel.views.list_numbers"))
         else:
             error = "The verification code didn't match."
@@ -73,7 +73,6 @@ def delete_number (request, pk):
 
 @sms.twilio_request
 def incoming (request):
-    pass
     n_incoming = tree_get(request.POST, "To", lambda s: s.strip())
     n_outgoing = tree_get(request.POST, "From", lambda s: s.strip())
     body = tree_get(request.POST, "Body", lambda s: s.strip())
@@ -92,23 +91,11 @@ def incoming (request):
     user = outgoing.owner
     todolist = gon(user.todolist_set)
 
-    if not todolist:
-        todolist = TodoList(owner=request.user, name="My todos")
-        todolist.save()
-
     # Check to see if the body is an available action
     if body == "HELP":
-        sms.send(outgoing, "ALL: Return all uncompleted items.\n\nHELP: Show this help")
-    elif body == "ALL":
-        # Collect all items and send
-        all_items = "\n\n".join([ item.__unicode__() for item in todolist.items.filter(completed=False) ])
-        sms.send(outgoing, all_items)
-    elif body == "BAL":
-        sms.send(outgoing, u"You have \u221E credits remaining.")
-    elif body == "BAUS":
-        sms.send(outgoing, u"To be a BAUS follow @joshkehn and @atumbiolo.")
-    else:
-        # Treat is as a new item
-        TodoItem(title=body, todo=todolist, owner=user).save()
-        sms.send(outgoing, "Saved!")
+        pass
+    elif body == "STOP":
+        sms.send(outgoing, "SMS messages stopped.")
+        outgoing.deleted = True
+        outgoing.save()
     return HttpResponse("")

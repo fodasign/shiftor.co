@@ -9,6 +9,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.core.exceptions import PermissionDenied
 
+from supervisor.models import BartendProfile
+
 def home (request):
     return render(request, "frontend/home.html")
 
@@ -29,7 +31,8 @@ def tos (request):
 
 
 def search (request):
-    return render(request, "frontend/search.html")
+    profiles = BartendProfile.objects.all()
+    return render(request, "frontend/search.html", { "profiles" : profiles })
 
 
 def login (request):
