@@ -5,6 +5,9 @@
         <div class="row">
             <div class="span12">
                 <h3>Please add a card below</h3>
+                {% if err %}
+                <p class="alert alert-error">{{ err }}</p>
+                {% endif %}
                 <div class="row">
                     <form method="post" class="span4 offset4">
                         {% csrf_token %}

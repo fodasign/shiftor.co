@@ -23,6 +23,7 @@ from utility import emails
 from . import auth
 from .models import User, BarProfile, BartendProfile
 from .forms import EmailForm, LoginForm, SignupForm, BarProfileForm, BartendProfileForm
+from .stripelib import customer
 
 def next (request):
     """Method of dubious dependability that handles a redirection."""
@@ -151,7 +152,24 @@ def add_email (request):
 def add_billing (request):
     if not request.user.is_authenticated():
         return next(request)
+    profile = request.user.get_profile()
+    if not profile:
+        return next(request)
+    err = ""
     if request.POST:
         stripeToken = request.POST.get("stripeToken")
-        return HttpResponse(stripeToken)
-    return render(request, "supervisor/add_billing.html")
+        subscription_data = {
+            "card" : stripeToken,
+            "plan" : "SHIFT",
+            "email" : request.user.email
+        }
+        stripe_user = customer.create(**subscription_data)
+        if stripe_user:
+            profile = request.user.get_profile()
+            profile.stripe_id = a.tree_get(stripe_user, "id")
+            profile.card_4 = a.tree_get(stripe_user, "active_card", "last4")
+            profile.save()
+            return next(request)
+        else:
+            err = "Unable to verify your card. Please try again."
+    return render(request, "supervisor/add_billing.html", { "err" : err })
