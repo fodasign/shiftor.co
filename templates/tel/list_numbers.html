@@ -1,0 +1,33 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="span4 offset4">
+            <h1>Connected Phone Numbers</h1>
+            {% if numbers %}
+                <ul>
+                {% for number in numbers %}
+                    <li>
+                        {% if not number.verified %}
+                        <a href="{% url 'tel.views.verify_number' pk=number.pk %}">{{ number }}</a> [unverified]
+
+                        {% else %}
+                        {{ number }} [verified!]
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+            <h3>No numbers!</h3>
+            <br>
+            <center><a class="btn btn-primary btn-large" href="{% url 'tel.views.add_number' %}"><i class="icon-plus icon-white"></i>Add a number</a></center>
+            <br>
+            <p>Why add a phone number? Connect a phone number, and then reply back to enable texting in new contacts. Super slick and easy to use.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

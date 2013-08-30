@@ -4,8 +4,8 @@
 
 <div class="container">
     <h1 class="uppercase centered">Shiftor</h1>
-    <p>Are you a bar manager? <a href="">Sign Up Here</a></p>
-    <h4 class="uppercase centered">Bar Employee Signup</h4>
+    <p class="centered">Are you a bartender? <a href="{% url 'sv-toggle' to='bartend' %}?next={% firstof request.path '' %}">Sign Up Here</a></p>
+    <h4 class="uppercase centered">Bar Signup</h4>
     <!-- <div class="span12"> -->
         <center>
         <form method="POST">
@@ -37,8 +37,7 @@
             <br><br><center><button type="submit" class="open-button">Sign Up</button></center>
         </form>
         OR
-        <br><br><center><a href="{% url 'sv-login-out' out='facebook' %}" class="open-button">
-        Connect with Facebook</a><br><br>
+        <br><br><center>
         <p>Have an account? <a href="{% url 'sv-login' %}">Log In</a></p>
         </center>
     <!-- </div> -->

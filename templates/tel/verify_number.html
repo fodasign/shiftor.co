@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="span6 offset3">
+            <h1>Verify {{ number }}</h1>
+            <form action="{% url 'tel.views.verify_number' pk=number.pk %}" method="POST">
+                {% csrf_token %}
+                {% if error %}
+                <h3>{{ error }}</h3>
+                {% endif %}
+                <label for="code">Verification Code:</label>
+                <input type="text" name="code" id="code" />
+                <button type="submit" class="btn btn-large btn-primary">Verify</button>
+            </form>
+            <h4>Having problems? Lost the code? <a href="{% url 'tel.views.send_verification' pk=number.pk %}">Resend verification code.</a></h4>
+        </div>
+    </div>
+</div>
+{% endblock %}

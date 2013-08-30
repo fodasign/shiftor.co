@@ -205,6 +205,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'south',
     'supervisor',
+    'tel',
     'frontend',
     'app',
 )

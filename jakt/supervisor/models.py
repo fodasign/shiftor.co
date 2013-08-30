@@ -8,6 +8,8 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from utility import annoying as a
 
+from tel.models import OutgoingNumber
+
 class User (AbstractUser):
     """Extended user model."""
 
@@ -34,6 +36,11 @@ class User (AbstractUser):
             Profile = BarProfile
         return a.get_or_none(Profile, owner=self)
 
+    def get_phone_number (self):
+        numbers = OutgoingNumber.objects.filter(owner=self, deleted=False)
+        if numbers:
+            return numbers[0]
+
 class BartendProfile (models.Model):
     owner = models.ForeignKey(User)
     gender = models.CharField(max_length=255, choices=(("male", "Male"), ("female", "Female")))
@@ -41,7 +48,6 @@ class BartendProfile (models.Model):
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     student = models.BooleanField(verbose_name="Are you a student?")
-    phone_number = models.CharField(max_length=255, null=True, blank=True)
     photo = models.CharField(max_length=255)
 
     wk_name_1 = models.CharField(max_length=255, verbose_name="Work Place Name #1", null=True, blank=True)

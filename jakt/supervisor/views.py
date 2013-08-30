@@ -35,7 +35,9 @@ def next (request):
             default = reverse("supervisor.views.add_email")
         if not request.user.get_profile():
             default = reverse("supervisor.views.complete_profile")
-    return HttpResponseRedirect(request.session.get("next-url", default))
+        if request.user.is_bartend and not request.user.get_phone_number():
+            default = reverse("tel.views.add_number")
+    return HttpResponseRedirect(request.session.pop("next-url", default))
 
 def login (request, out=None):
     if request.GET.get("next", None):
@@ -55,15 +57,30 @@ def login (request, out=None):
     data["form"] = form
     return render(request, "supervisor/login.html", data)
 
+def toggle (request, to):
+    if to == "bar":
+        request.session["is_bar"] = True
+    else:
+        request.session["is_bar"] = False
+    return next(request)
+
 def signup (request):
-    data = {}
+    if request.user.is_authenticated():
+        return next(request)
+
+    is_bar = request.session.get("is_bar", False)
+    template = "supervisor/signup_bartend.html"
+    if is_bar:
+        template = "supervisor/signup_bar.html"
+
+    data = { "is_bar" : is_bar }
     form = SignupForm()
     if request.POST:
         form = SignupForm(request.POST)
         if form.is_valid():
             user = User(username=form.cleaned_data.get("email"), **form.cleaned_data)
             user.set_password(form.cleaned_data.get("password"))
-            if request.session.get("is_bar", False):
+            if is_bar:
                 user.is_bar = True
             else:
                 user.is_bartend = True
@@ -72,7 +89,7 @@ def signup (request):
             dj_login(request, user)
             return next(request)
     data["form"] = form
-    return render(request, "supervisor/signup.html", data)
+    return render(request, template, data)
 
 def complete_profile (request):
     if not request.user.is_authenticated():
