@@ -31,12 +31,15 @@ def next (request):
 
     default = "/"
     if request.user.is_authenticated():
+        profile = request.user.get_profile()
         if request.user.email == "blank@twitterlogin.com" or not request.user.password:
             default = reverse("supervisor.views.add_email")
-        elif not request.user.get_profile():
+        elif not profile:
             default = reverse("supervisor.views.complete_profile")
         elif request.user.is_bartend and not request.user.get_phone_number():
             default = reverse("tel.views.add_number")
+        elif settings.PAYWALL and request.user.is_bar and not profile.has_active_card():
+            default = reverse("supervisor.views.add_billing")
     return HttpResponseRedirect(request.session.pop("next-url", default))
 
 def login (request, out=None):
@@ -144,3 +147,11 @@ def add_email (request):
             request.user.save()
             return next(request)
     return render(request, "supervisor/add_email.html", {"form" : form})
+
+def add_billing (request):
+    if not request.user.is_authenticated():
+        return next(request)
+    if request.POST:
+        stripeToken = request.POST.get("stripeToken")
+        return HttpResponse(stripeToken)
+    return render(request, "supervisor/add_billing.html")

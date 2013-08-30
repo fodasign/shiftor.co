@@ -26,6 +26,10 @@ if os.environ.get("DEBUG", None) is not None:
     DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+# Secure cookies
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+
 ALLOW_SIGNUP = True
 if os.environ.get("ALLOW_SIGNUP", True) is not True:
     ALLOW_SIGNUP = False
@@ -54,6 +58,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
+    'supervisor.context_processors.timezone',
+    'supervisor.context_processors.add_stripe_pk',
 )
 
 ADMINS = (
@@ -65,6 +71,11 @@ MANAGERS = ADMINS
 SINGLY_CLIENT_ID = os.environ.get("SINGLY_CLIENT_ID")
 SINGLY_CLIENT_SECRET = os.environ.get("SINGLY_CLIENT_SECRET")
 SINGLY_URL = os.environ.get("SINGLY_URL")
+
+# Stripe stuff
+STRIPE_SECRET = os.environ.get("STRIPE_SECRET", None)
+STRIPE_PUBLIC = os.environ.get("STRIPE_PUBLIC", None)
+STRIPE_LIVEMO = os.environ.get("STRIPE_LIVEMO", False)
 
 # Email
 set_from_dict(os.environ, "EMAIL_BACKEND", "EMAIL_HOST", "SENDGRID_USERNAME", "SENDGRID_PASSWORD", "EMAIL_PORT")

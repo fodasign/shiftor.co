@@ -134,3 +134,6 @@ class BarProfile (models.Model):
     # Stripe
     customer_id = models.CharField(max_length=30, null=True, blank=True)
     card_4 = models.CharField(max_length=4, null=True, blank=True)
+
+    def has_active_card (self):
+        return not not self.customer_id

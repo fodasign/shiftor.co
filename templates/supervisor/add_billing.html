@@ -1,0 +1,24 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+    <div class="container add-email">
+        <div class="row">
+            <div class="span12">
+                <h3>Please add a card below</h3>
+                <div class="row">
+                    <form method="post" class="span4 offset4">
+                        {% csrf_token %}
+                        <script
+                          src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                          data-key="{{ STRIPE_PUBLIC_KEY }}"
+                          data-name="Shiftor"
+                          data-label="Submit & Enter Card Details"
+                          data-panel-label="Place Order">
+                        </script>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -41,7 +41,7 @@ def twilio_request (func):
     return simple_shim(decorator, func)
 
 def send (to, body):
-    assert to.deleted = False, "Cannot send SMS messages to a deleted number"
+    assert to.deleted is False, "Cannot send SMS messages to a deleted number"
     if len(body) > 160:
         # Cut body up into many different sections
         n = 152
