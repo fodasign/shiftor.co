@@ -33,17 +33,17 @@
             <img src="http://placehold.it/295x200" class="img-polaroid"><br>
 
             <h5>Address of Venue</h5>
-            <input type="text" placeholder="Street" name="address1" value="{{ form.address1.value|default_if_none:"" }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
+            <input type="text" placeholder="Street" name="address_1" value="{{ form.address_1.value|default_if_none:"" }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
 
             <input type="text" placeholder="City" name="city" value="{{ form.city.value|default_if_none:"" }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
 
-            <select class="input-medium bfh-states" name="state" value="{{ form.state.value|default_if_none:"" }}" data-country="US" data-state="NY"></select><br>
+            <input type="text" placeholder="State" name="state" value="{{ form.state.value|default_if_none:"" }}" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
 
             <h5>Phone Number</h5>
             <input type="text" name="phone_number" value="{{ form.phone_number.value|default_if_none:"" }}" class="input-medium bfh-phone span4" data-format="+1 (ddd) ddd-dddd"></input><br>
 
             <h5>Type of Venue<h5>
-            {{form.venue}}<br>
+            {{form.venue_type}}<br>
 
             <h5>Social Media</h5>
             <input type="text" name="facebook_link" value="{{ form.facebook_link.value|default_if_none:"" }}" placeholder="Facebook Link" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>

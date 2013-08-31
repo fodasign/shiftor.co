@@ -113,10 +113,9 @@ class BartendProfile (models.Model):
 class BarProfile (models.Model):
     owner = models.ForeignKey(User)
     venue_name = models.CharField(max_length=255)
-    email = models.EmailField()
     website = models.CharField(max_length=255)
-    logo = models.CharField(max_length=255)
-    address_1 = models.CharField(max_length=255)
+    logo = models.CharField(max_length=255, null=True, blank=True)
+    address_1 = models.CharField(max_length=255, verbose_name="street")
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)

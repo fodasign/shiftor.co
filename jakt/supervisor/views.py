@@ -166,7 +166,7 @@ def add_billing (request):
         stripe_user = customer.create(**subscription_data)
         if stripe_user:
             profile = request.user.get_profile()
-            profile.stripe_id = a.tree_get(stripe_user, "id")
+            profile.customer_id = a.tree_get(stripe_user, "id")
             profile.card_4 = a.tree_get(stripe_user, "active_card", "last4")
             profile.save()
             return next(request)
