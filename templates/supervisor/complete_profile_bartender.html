@@ -104,7 +104,9 @@
 
             <h5>Are you a licensed bartender?<h5>
             {{ form.licensed }} (Check if yes)<br><br>
-            <button class="open-button small-button" id="js-choose-logo">Upload PDF of License to Verify</button><br><br>
+            <a class="open-button small-button" id="js-choose-license">Upload PDF of License to Verify</a><br><br>
+            <input type="hidden" value="{{ form.licensed_upload.value|default_if_none:'' }}" name="licensed_upload" id="licensed_upload">
+            <label for="licensed_upload" id="licensed_upload_label">{% if form.licensed_upload.value %}[filename hidden for privacy]{% else %}no file selected{% endif %}</label><br><br>
 
             <h5>Elevator Speech</h5>
             <textarea class="span5" maxlength="300" rows="5" name="pitch" value="{{ form.pitch.value|default_if_none:"" }}" placeholder="Please provide a short bio about yourself. Limit of 300 characters.">{{ form.pitch.value|default_if_none:"" }}</textarea>
@@ -153,6 +155,24 @@ $(function() {
             var u = InkBlob.url
             $("#id_photo").val(u)
             $("#photo").attr("src", u)
+          },
+          function(FPError){
+            alert("There was an error uploading your file, please try again.")
+          }
+        );
+
+    })
+
+    $("#js-choose-license").on("click", function() {
+
+        filepicker.pick({
+            mimetypes: ['image/*', 'text/plain'],
+            container: 'window',
+            services:['COMPUTER', 'FACEBOOK', 'GMAIL'],
+          },
+          function(InkBlob){
+            $("#licensed_upload").val(InkBlob.url)
+            $("#licensed_upload_label").text(InkBlob.filename)
           },
           function(FPError){
             alert("There was an error uploading your file, please try again.")
