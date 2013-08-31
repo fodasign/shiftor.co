@@ -49,10 +49,10 @@
           <!--   <img src="http://placehold.it/100x100" class="img-polaroid">
             <button class="open-button small-button" id="js-choose-logo">Choose Picture</button><br><br> -->
 
-            <button class="open-button small-button" id="js-choose-logo">Choose Picture</button><br><br>
-            <input type="hidden" name="photo" value="{{ form.photo.value|default_if_none:"" }}"></input>
+            <a class="open-button small-button" id="js-choose-logo">Choose Picture</a><br><br>
+            <input type="hidden" name="photo" id="id_photo" value="{{ form.photo.value|default_if_none:"" }}"></input>
 
-            <img src="http://placehold.it/200x200" class="img-polaroid"><br><br>
+            <img src="{% if form.photo.value %}{{ form.photo.value }}{% else %}http://placehold.it/200x200{% endif %}" id="photo" height="200" width="200" class="img-polaroid"><br><br>
 
             <h5>Work Experience</h5>
             <input type="text" placeholder="Place of Work" name="wk_place_1" value="{{ form.wk_place_1.value|default_if_none:"" }}" class="span3 input-large"></input>
@@ -150,11 +150,12 @@ $(function() {
             services:['COMPUTER', 'FACEBOOK', 'GMAIL'],
           },
           function(InkBlob){
-            console.log("file", InkBlob)
-            console.log(JSON.stringify(InkBlob));
+            var u = InkBlob.url
+            $("#id_photo").val(u)
+            $("#photo").attr("src", u)
           },
           function(FPError){
-            console.log(FPError.toString());
+            alert("There was an error uploading your file, please try again.")
           }
         );
 

@@ -110,6 +110,15 @@ class BartendProfile (models.Model):
                 available.push(d)
         return ",".join(available)
 
+    @property
+    def available_work (self):
+        types = ["sports","club","high","lounge","event","wine"]
+        available = []
+        for d in types:
+            if getattr(self, "work_{0}".format(d)):
+                available.push(d[0])
+        return ",".join(available)
+
 class BarProfile (models.Model):
     owner = models.ForeignKey(User)
     venue_name = models.CharField(max_length=255)

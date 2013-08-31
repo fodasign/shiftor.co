@@ -78,7 +78,25 @@
             <div class="row">
 
                 {% for p in profiles %}
-                <div class="span9 box" data-visible="true" data-age="{{ p.age }}" data-availability="{{ p.available_dates }}" data-workatm="h,e" data-occupation="student" data-gender="male" data-licensed="no">
+                <div class="span9 box" data-visible="true" data-age="{{ p.age }}" data-availability="{{ p.available_dates }}" data-workatm="{{ p.available_work }}" data-occupation="{% if p.student %}student{% endif %}" data-gender="{{ p.gender }}" data-licensed="{% if p.licensed %}yes{% else %}no{% endif %}">
+                    <div class="row">
+                        <div class="span2">
+                            <img src="{{ p.photo }}" class="img-polaroid">
+                        </div>
+                        <div class="span6 info">
+                            <a href="#profile-modal" class="js-profile-modal" data-id="{{ p.pk }}"><h4>{{ p.owner.name }} | {{ p.age }}</h4></a>
+                            <i>Bartender {% if p.licensed %}(Licensed){% endif %}</i><br>
+                            <i>Years experience: {{ p.years_exp }}</i><br>
+                            <p>{{ p.pitch }}</p>
+                        </div>
+                        <div class="span1">
+                            <div class="row">
+                                <a href="" class="js-add-message pull-right open-button small-button span1" style="margin-bottom: 5px">Add to Message</a><br>
+                                <!-- <a href="" class="pull-right open-button small-button span1">Full Profile</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
                 <div class="span9 box" data-visible="true" data-age="22" data-availability="wed,thur,fri,sat,sun" data-workatm="h,e" data-occupation="student" data-gender="male" data-licensed="no">
                     <div class="row">
