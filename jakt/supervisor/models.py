@@ -78,7 +78,7 @@ class BartendProfile (models.Model):
     available_sat = models.BooleanField(verbose_name="Available Saturday")
     available_sun = models.BooleanField(verbose_name="Available Sunday")
 
-    work_pref_1 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")), null=True, blank=True)
+    work_pref_1 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")))
     work_pref_2 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")), null=True, blank=True)
     work_pref_3 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")), null=True, blank=True)
     work_pref_4 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")), null=True, blank=True)

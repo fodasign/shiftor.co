@@ -14,7 +14,7 @@
                         <a href="{% url 'hiw' %}">How It Works</a>
                     </li>
                     <li {% if current == "contact" %} class="active" {% endif %}>
-                        <a href="{% url 'contact' %}">Are You a Bar Manager?</a>
+                        <a href="{% url 'sv-toggle' to='bar' %}">Are You a Bar Manager?</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="">
