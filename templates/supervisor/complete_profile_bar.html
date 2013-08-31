@@ -29,8 +29,10 @@
 
             <input type="text" placeholder="website url" name="website" value="{{ form.website.value|default_if_none:"" }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
 
-            <button class="open-button small-button" id="js-choose-logo">Choose Bar Logo</button><br><br>
-            <img src="http://placehold.it/295x200" class="img-polaroid"><br>
+            <a class="open-button small-button" id="js-choose-logo">Choose Picture</a><br><br>
+            <input type="hidden" name="logo" id="id_photo" value="{{ form.logo.value|default_if_none:"" }}"></input>
+
+            <img src="{% if form.logo.value %}{{ form.logo.value }}{% else %}http://placehold.it/200x200{% endif %}" id="photo" height="200" width="200" class="img-polaroid"><br><br>
 
             <h5>Address of Venue</h5>
             <input type="text" placeholder="Street" name="address_1" value="{{ form.address_1.value|default_if_none:"" }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
@@ -38,9 +40,6 @@
             <input type="text" placeholder="City" name="city" value="{{ form.city.value|default_if_none:"" }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
 
             <input type="text" placeholder="State" name="state" value="{{ form.state.value|default_if_none:"" }}" class="span4 input-large" style="text-align:center; margin-left: 0"></input><br>
-
-            <h5>Phone Number</h5>
-            <input type="text" name="phone_number" value="{{ form.phone_number.value|default_if_none:"" }}" class="input-medium bfh-phone span4" data-format="+1 (ddd) ddd-dddd"></input><br>
 
             <h5>Type of Venue<h5>
             {{form.venue_type}}<br>
@@ -81,11 +80,12 @@ $(function() {
             services:['COMPUTER', 'FACEBOOK', 'GMAIL'],
           },
           function(InkBlob){
-            console.log("file", InkBlob)
-            console.log(JSON.stringify(InkBlob));
+            var u = InkBlob.url
+            $("#id_photo").val(u)
+            $("#photo").attr("src", u)
           },
           function(FPError){
-            console.log(FPError.toString());
+            alert("There was an error uploading your file, please try again.")
           }
         );
 
