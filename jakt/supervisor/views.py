@@ -139,7 +139,7 @@ def add_email (request):
     if not request.user.is_authenticated():
         return next(request)
 
-    form = EmailForm()
+    form = EmailForm(initial={"email" : request.user.email})
     if request.POST:
         form = EmailForm(request.POST)
         if form.is_valid():

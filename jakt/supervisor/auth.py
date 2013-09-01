@@ -36,12 +36,17 @@ def login (request, data):
 
             # First pull the profile
             profile = combined.get_profile(singly_token)
-            username = a.tree_get(profile, "id", lambda d: d[0:30])
+            username = a.tree_get(profile, "email")
             email = a.tree_get(profile, "email")
-            first_name, last_name = a.tree_get(profile, "name", lambda n: n.split(" ", 1))
+            name = a.tree_get(profile, "name")
+            if " " not in name:
+                name += " "
+            first_name, last_name = name.split(" ")
 
             # Now let's check to see if the email address exists
             user = a.get_or_none(User, email=email)
+            is_bar = request.session.get("is_bar", False)
+
             if not user:
                 # Guess we have to create a new account
                 user = User()
@@ -52,11 +57,21 @@ def login (request, data):
                 user.singly_token = singly_token
                 user.username = username
                 user.email = email
+                if is_bar:
+                    user.is_bar = True
+                else:
+                    user.is_bartend = True
+
                 if not user.email:
                     user.email = "blank@twitterlogin.com"
                 user.save()
             else:
-                if not combined.merge(singly_token, user.singly_token):
+                if not user.singly_token:
+                    # Assume it's the same
+                    user.singly_id = singly_id
+                    user.singly_token = singly_token
+                    user.save()
+                elif not combined.merge(singly_token, user.singly_token):
                     return None
 
         user.backend = "django.contrib.auth.backends.ModelBackend"
