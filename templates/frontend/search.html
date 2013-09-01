@@ -85,7 +85,7 @@
                         </div>
                         <div class="span6 info">
                             <a href="#profile-modal" class="js-profile-modal" data-id="{{ p.pk }}"><h4>{{ p.owner.name }} | {{ p.age }}</h4></a>
-                            <i>Bartender {% if p.licensed %}(Licensed){% endif %}</i><br>
+                            <i>{{ p.work_prefs }} {% if p.licensed %}(Licensed){% endif %}</i><br>
                             <i>Years experience: {{ p.years_exp }}</i><br>
                             <p>{{ p.pitch }}</p>
                         </div>

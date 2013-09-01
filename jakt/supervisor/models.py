@@ -78,7 +78,7 @@ class BartendProfile (models.Model):
     available_sat = models.BooleanField(verbose_name="Available Saturday")
     available_sun = models.BooleanField(verbose_name="Available Sunday")
 
-    work_pref_1 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")))
+    work_pref_1 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")), verbose_name="work preference")
     work_pref_2 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")), null=True, blank=True)
     work_pref_3 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")), null=True, blank=True)
     work_pref_4 = models.CharField(max_length=255, choices=(("Bartender", "Bartender"), ("Waiter / Waitress", "Waiter / Waitress"), ("Bar Back", "Bar Back"), ("Other", "Other")), null=True, blank=True)
@@ -118,6 +118,14 @@ class BartendProfile (models.Model):
             if getattr(self, "work_{0}".format(d)):
                 available.push(d[0])
         return ",".join(available)
+
+    @property
+    def work_prefs (self):
+        available = []
+        for i in ["1", "2", "3", "4"]:
+            if getattr(self, "work_pref_{0}".format(i)):
+                available.push(getattr(self, "work_pref_{0}".format(i)))
+        return ", ".join(available)
 
 class BarProfile (models.Model):
     owner = models.ForeignKey(User)
