@@ -1,15 +1,15 @@
 <!-- Navbar  -->
-<div class="navbar navbar">
-    <div class="navbar-inner">
+<div class="navbar">
+    <div class="navbar-inner" style="">
         <div class="container">
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="{% url 'home' %}">Shiftor</a>
+            <a class="brand" href="{% url 'home' %}"><img src="{{ STATIC_URL }}images/logo-gray.png" width=100 style="margin-bottom: -5px"></a>
             <div class="nav-collapse collapse">
-                <ul class="nav pull-right">
+                <ul class="nav pull-right" style="margin-top: 7px">
                     <li {% if current == "hiw" %} class="active" {% endif %}>
                         <a href="{% url 'hiw' %}">How It Works</a>
                     </li>

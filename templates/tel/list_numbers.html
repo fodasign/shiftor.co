@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="span4 offset4">
+        <div class="centered span8 offset2">
             <h1>Connected Phone Numbers</h1>
             {% if numbers %}
                 <ul>
@@ -22,9 +22,9 @@
             {% else %}
             <h3>No numbers!</h3>
             <br>
-            <center><a class="btn btn-primary btn-large" href="{% url 'tel.views.add_number' %}"><i class="icon-plus icon-white"></i>Add a number</a></center>
-            <br>
-            <p>Why add a phone number? Connect a phone number, and then reply back to enable texting in new contacts. Super slick and easy to use.</p>
+            <a class="open-button" href="{% url 'tel.views.add_number' %}">Add a number</a>
+            <br><br><br>
+            <p>Why should I add a phone number? If you connect a phone number we can send you text notifications when jobs are available.</p>
             {% endif %}
         </div>
     </div>
