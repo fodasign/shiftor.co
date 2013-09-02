@@ -2,11 +2,8 @@
 
 {% block content %}
 
-<div class="container">
-    <h1 class="uppercase centered">Shiftor</h1>
     <h3 class="centered">Complete Profile</h3>
     <!-- <div class="span12"> -->
-        <center>
         <form class="complete-profile-form" method="POST">
 
             {% csrf_token %}
@@ -23,7 +20,7 @@
             {% endfor %}
             </ul>
 
-            <br class="clearfix">
+            <div class="clearfix">
 
             <h5>Gender</h5>
             {{ form.gender }}
@@ -108,10 +105,8 @@
             <h5>Elevator Speech</h5>
             <textarea class="span5" maxlength="300" rows="5" name="pitch" value="{{ form.pitch.value|default_if_none:"" }}" placeholder="Please provide a short bio about yourself. Limit of 300 characters.">{{ form.pitch.value|default_if_none:"" }}</textarea>
 
-            <br><br><center><button type="submit" class="open-button">Submit</button></center>
+            <br><br><button type="submit" class="open-button">Submit</button>
         </form>
-    <!-- </div> -->
-</div>
 
 {% endblock %}
 

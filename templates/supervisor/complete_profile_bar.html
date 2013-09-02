@@ -2,8 +2,6 @@
 
 {% block content %}
 
-<div class="container">
-    <h1 class="uppercase centered">Shiftor</h1>
     <h3 class="centered">Complete Profile</h3>
     <!-- <div class="span12"> -->
         <center>
@@ -23,7 +21,7 @@
             {% endfor %}
             </ul>
 
-            <br>
+            <div class="clearfix"></div>
 
             <input type="text" placeholder="venue name" name="venue_name" value="{{ form.venue_name.value|default_if_none:"" }}" class="span4 input-large uppercase" style="text-align:center; margin-left: 0"></input><br>
 
@@ -53,10 +51,8 @@
 
 
 
-            <br><br><center><button type="submit" class="open-button">Submit</button></center>
+            <br><br><button type="submit" class="open-button">Submit</button>
         </form>
-    <!-- </div> -->
-</div>
 
 {% endblock %}
 
