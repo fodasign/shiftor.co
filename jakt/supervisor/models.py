@@ -36,6 +36,14 @@ class User (AbstractUser):
             Profile = BarProfile
         return a.get_or_none(Profile, owner=self)
 
+    @property
+    def picture (self):
+        p = self.get_profile()
+        if p:
+            if self.is_bar:
+                return p.logo
+            return p.photo
+
     def get_phone_number (self):
         numbers = OutgoingNumber.objects.filter(owner=self, deleted=False)
         if numbers:
