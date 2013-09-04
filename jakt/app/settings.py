@@ -18,6 +18,10 @@ class AllIps ():
         return True
 INTERNAL_IPS = AllIps()
 
+DEBUG_TOOLBAR_CONFIG = {
+    "INTERCEPT_REDIRECTS" : False
+}
+
 # Switch out the user model
 AUTH_USER_MODEL = 'supervisor.User'
 
