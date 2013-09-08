@@ -56,7 +56,7 @@ def valid_phonenumber (v, bitch=True):
 class OutgoingNumber (OwnedDatedModel):
     """Outgoing number we receive messages from."""
     name = models.CharField(max_length=255)
-    number = models.CharField(max_length=32, validators=[valid_phonenumber], unique=True)
+    number = models.CharField(max_length=32, validators=[valid_phonenumber])
     verified = models.BooleanField(default=False)
     verification_code = models.CharField(max_length=8, default=generate_verification_code)
     deleted = models.BooleanField(default=False)
@@ -69,6 +69,11 @@ class OutgoingNumber (OwnedDatedModel):
         self.verification_code = code
         self.save()
         return code
+
+    def delete (self, commit=True):
+        self.deleted = True
+        if commit:
+            self.save()
 
 class SMSLog (DatedModel):
     """Log of incoming / outgoing numbers."""

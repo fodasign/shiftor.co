@@ -14,7 +14,7 @@
                         <a href="{% url 'tel.views.verify_number' pk=number.pk %}">{{ number }}</a> [unverified]
 
                         {% else %}
-                        {{ number }} [verified!]
+                        {{ number }} [verified!] <form action="{% url 'tel.views.delete_number' pk=number.pk %}" method="POST">{% csrf_token %}<button type="submit" class="btn">delete</button></form>
                         {% endif %}
                     </li>
                 {% endfor %}

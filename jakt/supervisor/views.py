@@ -117,6 +117,27 @@ def complete_profile (request):
     data["form"] = form
     return render(request, template, data)
 
+def profile (request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect("/")
+
+    data = {}
+    FormClass = BartendProfileForm
+    template = "supervisor/complete_profile_bartender.html"
+    profile = request.user.get_profile()
+    if request.user.is_bar:
+        FormClass = BarProfileForm
+        template = "supervisor/complete_profile_bar.html"
+    form = FormClass(initial=profile)
+    logger.info(request.POST)
+    if request.POST:
+        form = FormClass(request.POST, initial=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile saved!")
+    data["form"] = form
+    return render(request, template, data)
+
 def logout (request):
     auth.logout(request)
     return next(request)

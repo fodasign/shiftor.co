@@ -40,7 +40,7 @@ def add_number (request):
 
 @requires_login
 def send_verification (request, pk):
-    number = gog(OutgoingNumber, owner=request.user, pk=pk)
+    number = gog(OutgoingNumber, owner=request.user, pk=pk, deleted=False)
     if number.verified:
         return HttpResponseRedirect(reverse("tel.views.list_numbers"))
 
@@ -50,7 +50,7 @@ def send_verification (request, pk):
 
 @requires_login
 def verify_number (request, pk):
-    number = gog(OutgoingNumber, owner=request.user, pk=pk)
+    number = gog(OutgoingNumber, owner=request.user, pk=pk, deleted=False)
 
     if number.verified:
         return HttpResponseRedirect(reverse("tel.views.list_numbers"))
@@ -69,7 +69,10 @@ def verify_number (request, pk):
 
 @requires_login
 def delete_number (request, pk):
-    return HttpResponse("Cannot delete numbers just yet.")
+    number = gog(OutgoingNumber, owner=request.user, pk=pk, deleted=False)
+    if request.POST:
+        number.delete()
+    return HttpResponseRedirect(reverse("tel.views.list_numbers"))
 
 @sms.twilio_request
 def incoming (request):

@@ -10,7 +10,7 @@
     {% endif %}
     <label for="code">Verification Code:</label>
     <input type="text" name="code" id="code" />
-    <button type="submit" class="btn btn-large btn-primary">Verify</button>
+    <button type="submit" class="open-button">Save</button>
 </form>
 <h4>Having problems? Lost the code? <a href="{% url 'tel.views.send_verification' pk=number.pk %}">Resend verification code.</a></h4>
 
