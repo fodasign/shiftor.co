@@ -128,10 +128,10 @@ def profile (request):
     if request.user.is_bar:
         FormClass = BarProfileForm
         template = "supervisor/complete_profile_bar.html"
-    form = FormClass(initial=profile)
+    form = FormClass(instance=profile)
     logger.info(request.POST)
     if request.POST:
-        form = FormClass(request.POST, initial=profile)
+        form = FormClass(request.POST, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, "Profile saved!")

@@ -39,7 +39,22 @@
                 <div class="row">
                     <div class="centered">
                         <!-- <h1 class="uppercase">Shiftor</h1> -->
-                        <img src="{{ STATIC_URL }}images/logo-gray.png">
+                        <a href="/"><img src="{{ STATIC_URL }}images/logo-gray.png"></a>
+                        <!-- Messages -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="row">
+                                    <div class="alert alert-{{ message.tags }}">
+                                        <button type="button" class="close pull-right" data-dismiss="alert">&times;</button>
+                                        <h4>{{ message.tags|capfirst }}</h4>
+                                        <p>{{ message }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <!-- No messages -->
+                        {% endif %}
+                        <!-- End Messages -->
                         <!-- Page content -->
                         {% block content %}{% endblock %}
                         <!-- End page content -->

@@ -14,11 +14,15 @@
                         <a href="{% url 'hiw' %}">How It Works</a>
                     </li>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'search' %}">Search</a></li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ user.picture }}" class="img-circle"> {{ user.first_name }}&nbsp;<b class="caret"></b></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ user.picture }}" class="img-circle" width=100> {{ user.first_name }}&nbsp;<b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                        <li><a>Edit Profile</a></li>
+                        <li><a href="{% url 'sv-profile' %}">Edit Profile</a></li>
+                        {% if user.is_bar %}
+                        <li><a href="{% url 'sv-payment' %}">Payment</a></li>
+                        {% else %}
+                        <li><a href="{% url 'tel-list-numbers' %}">Phone Alerts</a></li>
+                        {% endif %}
                         <li><a href="{% url 'sv-logout' %}">Logout</a></li>
                       </ul>
                     </li>
