@@ -47,6 +47,15 @@ def administrative (request, **kwargs):
     body = get_template(template).render(context)
     return title, body, from_email, to_email
 
+def message (request, **kwargs):
+    title = "Job Message from Shiftor"
+    template = "emails/message.html"
+    to_email = [kwargs.get("user").email]
+    from_email = "jobs@shiftor.com"
+    context = Context(kwargs)
+    body = get_template(template).render(context)
+    return title, body, from_email, to_email
+
 def get_admin_emails ():
     """
     Helper function that returns a list of emails from users that are
@@ -67,6 +76,7 @@ EMAIL_MAP = {
     "verify_admin" : verify_admin,
     "thread_response" : thread_response,
     "administrative" : administrative,
+    "message" : message,
 }
 
 def send (request, email, **kwargs):

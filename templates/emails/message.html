@@ -1,0 +1,9 @@
+{{ bar.venue_name|safe|title }} has a {{ job_duration }} opening for a {{ job_type }} on the following days:
+{% for day in days %}
+ - {{ day }}
+{% endfor %}
+
+Additional details:
+{{ details }}
+
+Reply to {{ bar.owner.email|safe }} if you are interested.

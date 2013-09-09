@@ -78,7 +78,7 @@
             <div class="row">
 
                 {% for p in profiles %}
-                <div class="span9 box" data-visible="true" data-age="{{ p.age }}" data-availability="{{ p.available_dates }}" data-workatm="{{ p.available_work }}" data-occupation="{% if p.student %}student{% endif %}" data-gender="{{ p.gender }}" data-licensed="{% if p.licensed %}yes{% else %}no{% endif %}">
+                <div class="span9 box" pk="{{ p.owner.pk }}" data-visible="true" data-age="{{ p.age }}" data-availability="{{ p.available_dates }}" data-workatm="{{ p.available_work }}" data-occupation="{% if p.student %}student{% endif %}" data-gender="{{ p.gender }}" data-licensed="{% if p.licensed %}yes{% else %}no{% endif %}">
                     <div class="row">
                         <div class="span2">
                             <img src="{{ p.photo }}" class="img-polaroid">
@@ -380,22 +380,22 @@
     <h3 id="myModalLabel">Send Message</h3>
   </div>
   <div class="modal-body">
-    <form>
-
+    <form action="{% url 'sv-message' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="" name="selected" id="selected">
         <p class="title">Days Needed</p>
-        <input type="checkbox" name="vehicle" value="Car">&nbsp;Monday&nbsp;&nbsp;
-        <input type="checkbox" name="vehicle" value="Bike">&nbsp;Tuesday&nbsp;&nbsp;
-        <input type="checkbox" name="vehicle" value="Car">&nbsp;Wednesday&nbsp;&nbsp;
-        <input type="checkbox" name="vehicle" value="Car">&nbsp;Thursday&nbsp;&nbsp;
-        <input type="checkbox" name="vehicle" value="Bike">&nbsp;Friday&nbsp;&nbsp;
-        <input type="checkbox" name="vehicle" value="Bike">&nbsp;Saturday&nbsp;&nbsp;
-        <input type="checkbox" name="vehicle" value="Bike">&nbsp;Sunday&nbsp;&nbsp;
-
+        <input type="checkbox" checked name="available_mon" id="available_mon"><label style="display: inline" for="available_mon">&nbsp;Monday</label>
+        <input type="checkbox" checked name="available_tue" id="available_tues"><label style="display: inline" for="available_tues">&nbsp;Tuesday</label>
+        <input type="checkbox" checked name="available_wed" id="available_wed"><label style="display: inline" for="available_wed">&nbsp;Wednesday</label>
+        <input type="checkbox" checked name="available_thu" id="available_thurs"><label style="display: inline" for="available_thurs">&nbsp;Thursday</label>
+        <input type="checkbox" checked name="available_fri" id="available_fri"><label style="display: inline" for="available_fri">&nbsp;Friday</label>
+        <input type="checkbox" checked name="available_sat" id="available_sat"><label style="display: inline" for="available_sat">&nbsp;Saturday</label>
+        <input type="checkbox" checked name="available_sun" id="available_sun"><label style="display: inline" for="available_sun">&nbsp;Sunday</label>
         <br>
         <br>
         <p class="title">Is this a one-time job or repeating?</p>
-        <input type="radio" name="sex" value="male">&nbsp;One-time<br>
-        <input type="radio" name="sex" value="female">&nbsp;Repeating
+        <input type="radio" checked name="job_duration" value="one-time">&nbsp;One-time<br>
+        <input type="radio" name="job_duration" value="repeating">&nbsp;Repeating
 
         <br><br>
 <!--
@@ -412,7 +412,7 @@
         <br><br> -->
 
         <p class="title">Job Type</p>
-        <select>
+        <select name="job_type">
             <option>Bartender</option>
             <option>Waiter/Waitress</option>
             <option>Bar Back</option>
@@ -422,7 +422,8 @@
         <br><br>
 
         <p class="title">Additional Details?</p>
-        <textarea class="span6" maxlength="160" placeholder="Provide any additional details here. 160 characters max."></textarea>
+        <textarea name="details" class="span6" maxlength="160" placeholder="Provide any additional details here. 160 characters max."></textarea>
+        <p><button type="submit" class="open-button">Submit</button></p>
     </form>
   </div>
 </div>
@@ -441,6 +442,7 @@ $(function () {
     var $body = $("body")
     var $addMessageBtn = $(".js-add-message")
     var $messageUsersBtn = $(".js-message-users")
+    var $selected = $("#selected")
 
     $body.on("click", ".js-add-all", add_all)
     $body.on("click", ".js-all-selected", remove_all)
@@ -449,66 +451,51 @@ $(function () {
     $body.on("click", ".js-message-users", message_users)
     $body.on("click", ".js-profile-modal", showProfileModal)
 
+    function update_selected () {
+        var selected = $(".js-selected").length
+
+        if (selected > 0) {
+            $messageUsersBtn.addClass("complement-button-selected")
+            if (selected == 1) {
+                $messageUsersBtn.text("Message 1 Person")
+            } else {
+                $messageUsersBtn.text("Message " + selected + " People")
+            }
+            $selected.val(_.map(_.filter($(".js-selected").parent().parent().parent().parent(), function (i) {
+                return $(i).attr("data-visible") == "true" && $(i).attr("pk")
+            }), function (i) {
+                return $(i).attr("pk")
+            }).join(","))
+        } else {
+            $messageUsersBtn.text("Message Selected People")
+            $messageUsersBtn.removeClass("complement-button-selected")
+        }
+    }
+
     function add_all (e) {
         e.preventDefault()
         $(this).addClass("solid-button").addClass("js-all-selected").text("Remove All From Message")
         $addMessageBtn.addClass("solid-button").addClass("js-selected").text("Added")
-
-        // Highlight Message Button
-        $messageUsersBtn.addClass("complement-button-selected")
-
-        if ($(".js-selected").length == 1) {
-            $messageUsersBtn.text("Message 1 Person")
-        } else {
-            $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
-        }
-
+        update_selected()
     }
 
     function remove_all (e) {
         e.preventDefault()
         $(this).removeClass("solid-button").removeClass("js-all-selected").text("Add All to Message")
         $addMessageBtn.removeClass("solid-button").removeClass("js-selected").text("Add to Message")
-
-        // Remove Highlight Message Button
-        $messageUsersBtn.removeClass("complement-button-selected")
-
-        if ($(".js-selected").length == 1) {
-            $messageUsersBtn.text("Message 1 Person")
-        } else {
-            $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
-        }
+        update_selected()
     }
 
     function add_to_list (e) {
         e.preventDefault()
         $(this).addClass("solid-button").addClass("js-selected").text("Added")
-
-        // Highlight Message Button
-        $messageUsersBtn.addClass("complement-button-selected")
-
-        if ($(".js-selected").length == 1) {
-            $messageUsersBtn.text("Message 1 Person")
-        } else {
-            $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
-        }
-
+        update_selected()
     }
 
     function remove_from_list (e) {
         e.preventDefault()
         $(this).removeClass("solid-button").removeClass("js-selected").text("Add to List")
-
-        // Check length of messagUsersBtn to see if any selected anymore
-        // If length == 0 Remove Highlight Message Button
-        if ($(".js-selected").length == 0) {
-            $messageUsersBtn.removeClass("complement-button-selected")
-            $messageUsersBtn.text("Message Selected People")
-        } else if ($(".js-selected").length == 1) {
-            $messageUsersBtn.text("Message 1 Person")
-        } else {
-            $messageUsersBtn.text("Message " + $(".js-selected").length + " People")
-        }
+        update_selected()
     }
 
     function message_users (e) {

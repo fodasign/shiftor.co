@@ -138,6 +138,23 @@ def profile (request):
     data["form"] = form
     return render(request, template, data)
 
+def send_message (request):
+    data = {}
+    selected = request.POST.get("selected", "").split(",")
+    users = filter(lambda u: not not u, map(lambda i: a.get_or_none(User, pk=i, is_bartend=True), selected))
+    availables = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    data["days"] = days = []
+    for av in availables:
+        if request.POST.get("available_{0}".format(av[0:3]), False):
+            days.append(av.title())
+    for k in ["job_type", "job_duration", "details"]:
+        data[k] = request.POST.get(k)
+
+    for u in users:
+        emails.send(request, "message", user=u, bar=request.user.get_profile(), **data)
+        u.message()
+    return render(request, "supervisor/send_message.html", data)
+
 def logout (request):
     auth.logout(request)
     return next(request)

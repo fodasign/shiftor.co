@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from utility import annoying as a
 
 from tel.models import OutgoingNumber
+from tel import sms
 
 class User (AbstractUser):
     """Extended user model."""
@@ -48,6 +49,11 @@ class User (AbstractUser):
         numbers = OutgoingNumber.objects.filter(owner=self, deleted=False)
         if numbers:
             return numbers[0]
+
+    def message (self):
+        phone = self.get_phone_number()
+        if phone:
+            sms.send(phone, "A new message from Shiftor has been sent to you. Please check your email for more details.")
 
 class BartendProfile (models.Model):
     owner = models.ForeignKey(User)
