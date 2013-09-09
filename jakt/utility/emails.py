@@ -51,7 +51,7 @@ def message (request, **kwargs):
     title = "Job Message from Shiftor"
     template = "emails/message.html"
     to_email = [kwargs.get("user").email]
-    from_email = "jobs@shiftor.com"
+    from_email = "jobs@byjakt.com"
     context = Context(kwargs)
     body = get_template(template).render(context)
     return title, body, from_email, to_email
