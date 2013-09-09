@@ -93,7 +93,8 @@ def send (request, email, **kwargs):
 
     logger.debug("Executing {0} with arguments {1}".format(template, kwargs))
     try:
-        send_mail(*template(request, **kwargs), fail_silently=False)
+        args = *template(request, **kwargs)
+        send_mail(*args, fail_silently=False)
         _process_hooks(request, email, **kwargs)
     except SMTPServerDisconnected as e:
         logger.exception(e)
