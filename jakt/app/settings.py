@@ -82,11 +82,11 @@ STRIPE_PUBLIC = os.environ.get("STRIPE_PUBLIC", None)
 STRIPE_LIVEMO = os.environ.get("STRIPE_LIVEMO", False)
 
 # Email
-set_from_dict(os.environ, "EMAIL_BACKEND", "EMAIL_HOST", "SENDGRID_USERNAME", "SENDGRID_PASSWORD", "EMAIL_PORT")
+set_from_dict(os.environ, "EMAIL_BACKEND", "EMAIL_HOST", "EMAIL_USERNAME", "EMAIL_PASSWORD", "EMAIL_PORT")
 if os.environ.get("EMAIL_PORT"):
     EMAIL_USE_TLS = True
 
-SERVER_EMAIL = "django@localhost"
+SERVER_EMAIL = "django@byjakt.com"
 
 DATABASES = {
     'default': {
