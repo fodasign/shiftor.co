@@ -3,6 +3,7 @@
 
 # Python imports
 from functools import wraps
+from twilio import TwilioRestException
 from twilio.rest import TwilioRestClient
 from twilio.util import RequestValidator
 
@@ -53,5 +54,10 @@ def send (to, body):
     else:
         client = TwilioRestClient()
         fr = IncomingNumber.objects.order_by("priority").get()
-        SMSLog(incoming=fr, outgoing=to, body=body).save()
-        client.sms.messages.create(to=to.number, from_=fr.number, body=body)
+        log = SMSLog(incoming=fr, outgoing=to, body=body)
+        log.save()
+        try:
+            client.sms.messages.create(to=to.number, from_=fr.number, body=body)
+        except (TwilioRestException, Exception) as e:
+            log.error = True
+            log.error_msg = unicode(e)

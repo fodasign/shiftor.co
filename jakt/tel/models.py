@@ -85,6 +85,8 @@ class SMSLog (DatedModel):
     raw = models.TextField(null=True)
     body = models.TextField()
     direction = models.IntegerField(max_length=1, choices=((INCOMING, "Incoming"), (OUTGOING, "Outgoing")), default=OUTGOING)
+    errored = models.BooleanField(default=False)
+    error_msg = models.TextField(null=True, blank=True)
 
     def __unicode__ (self):
         return "{sender} to {to}".format(sender=self.incoming, to=self.outgoing)
