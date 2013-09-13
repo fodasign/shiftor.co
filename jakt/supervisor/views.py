@@ -41,6 +41,8 @@ def next (request):
             default = reverse("tel.views.add_number")
         elif settings.PAYWALL and request.user.is_bar and not profile.has_active_card():
             default = reverse("supervisor.views.add_billing")
+        elif request.user.is_bar:
+            default = reverse("frontend.views.search")
     return HttpResponseRedirect(request.session.pop("next-url", default))
 
 def login (request, out=None):
