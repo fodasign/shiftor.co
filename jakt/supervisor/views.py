@@ -82,18 +82,21 @@ def signup (request):
     data = { "is_bar" : is_bar }
     form = SignupForm()
     if request.POST:
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            user = User(username=form.cleaned_data.get("email"), **form.cleaned_data)
-            user.set_password(form.cleaned_data.get("password"))
-            if is_bar:
-                user.is_bar = True
-            else:
-                user.is_bartend = True
-            user.save()
-            user = dj_authenticate(username=user.username, password=form.cleaned_data.get("password"))
-            dj_login(request, user)
-            return next(request)
+        if request.POST.get("homepage"):
+            form = SignupForm(initial={"email" : request.POST.get("email")})
+        else:
+            form = SignupForm(request.POST)
+            if form.is_valid():
+                user = User(username=form.cleaned_data.get("email"), **form.cleaned_data)
+                user.set_password(form.cleaned_data.get("password"))
+                if is_bar:
+                    user.is_bar = True
+                else:
+                    user.is_bartend = True
+                user.save()
+                user = dj_authenticate(username=user.username, password=form.cleaned_data.get("password"))
+                dj_login(request, user)
+                return next(request)
     data["form"] = form
     return render(request, template, data)
 
