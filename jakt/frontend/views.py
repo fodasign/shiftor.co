@@ -20,6 +20,9 @@ def about (request):
 def hiw (request):
     return render(request, "frontend/hiw.html", {"current": "hiw"})
 
+def bars (request):
+    return render(request, "frontend/bars.html", {"current": "bars"})
+
 def contact (request):
     return render(request, "frontend/contact.html", {"current": "contact"})
 
