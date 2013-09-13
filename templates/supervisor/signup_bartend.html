@@ -3,7 +3,7 @@
 {% block content %}
 
 
-    <p class="centered">Are you a bar manager? <a href="{% url 'sv-toggle' to='bar' %}?next={% firstof request.path '' %}">Sign Up Here</a></p>
+    <p class="centered">Are you a venue manager? <a href="{% url 'sv-toggle' to='bar' %}?next={% firstof request.path '' %}">Sign Up Here</a></p>
     <h4 class="uppercase centered">Bar Employee Signup</h4>
     <!-- <div class="span12"> -->
         <form method="POST">
