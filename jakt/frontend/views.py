@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.core.exceptions import PermissionDenied
 
-from supervisor.models import BartendProfile
+from supervisor.models import BartendProfile, BarProfile
 
 def home (request):
     return render(request, "frontend/home.html")
@@ -21,7 +21,8 @@ def hiw (request):
     return render(request, "frontend/hiw.html", {"current": "hiw"})
 
 def bars (request):
-    return render(request, "frontend/bars.html", {"current": "bars"})
+    bars = BarProfile.objects.all()
+    return render(request, "frontend/bars.html", {"current": "bars", "bars" : bars})
 
 def contact (request):
     return render(request, "frontend/contact.html", {"current": "contact"})
@@ -32,11 +33,9 @@ def privacy (request):
 def tos (request):
     return render(request, "frontend/tos.html")
 
-
 def search (request):
     profiles = BartendProfile.objects.all()
     return render(request, "frontend/search.html", { "profiles" : profiles })
-
 
 def login (request):
     return render(request, "frontend/login.html")
@@ -52,7 +51,6 @@ def barsignup (request):
 
 def completebarprofile (request):
     return render(request, "frontend/completebarprofile.html")
-
 
 
 def internal_error (request):

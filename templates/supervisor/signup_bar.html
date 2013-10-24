@@ -3,7 +3,7 @@
 {% block content %}
 
     <p>Are you a bartender? <a href="{% url 'sv-toggle' to='bartend' %}?next={% firstof request.path '' %}">Sign Up Here</a></p>
-    <h4 class="uppercase centered">Bar Signup</h4>
+    <h4 class="uppercase centered">Venue Signup</h4>
     <!-- <div class="span12"> -->
         <form method="POST" class="">
             {% csrf_token %}

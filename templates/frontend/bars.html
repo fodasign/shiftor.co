@@ -9,24 +9,11 @@
 }
 </style>
 <div class="row" style="margin-bottom: 50px">
+    {% for bar in bars %}
     <div class="span4 bar-logo">
-        <img src="http://www.villagepourhouse.com/images/pourhouse_logo_bar.jpg" class="img-polaroid">
+        <img src="{{ bar.logo }}" class="img-polaroid">
     </div>
-    <div class="span4 bar-logo">
-        <img src="http://placehold.it/300x150" class="img-polaroid">
-    </div>
-    <div class="span4 bar-logo">
-        <img src="http://placehold.it/300x150" class="img-polaroid">
-    </div>
-    <div class="span4 bar-logo">
-        <img src="http://placehold.it/300x150" class="img-polaroid">
-    </div>
-    <div class="span4 bar-logo">
-        <img src="http://placehold.it/300x150" class="img-polaroid">
-    </div>
-    <div class="span4 bar-logo">
-        <img src="http://placehold.it/300x150" class="img-polaroid">
-    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

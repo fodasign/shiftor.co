@@ -15,7 +15,7 @@
                             </div>
                             <div class="span8">
                                 <h1 class="centered uppercase">Find your next job</h1>
-                                <h4 class="centered">Bartenders, Barbacks, Waiters, and more</h4>
+                                <h4 class="centered">Bartenders, Barbacks, Waiters, and more!</h4>
                                 <center>
                                 <form method="POST" action="{% url 'sv-signup' %}">
                                     {% csrf_token %}
@@ -25,7 +25,7 @@
                                 </form>
                                 </center>
                                 <center>OR</center>
-                                <br><center><a href="{% url 'sv-login-out' out='facebook' %}" class="solid-button">
+                                <br><center style="margin-top: 10px;"><a href="{% url 'sv-login-out' out='facebook' %}" class="solid-button">
                                 Connect with Facebook</a></center>
                             </div>
                         </div>
