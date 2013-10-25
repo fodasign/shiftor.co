@@ -50,10 +50,10 @@ class User (AbstractUser):
         if numbers:
             return numbers[0]
 
-    def message (self):
+    def message (self, profile):
         phone = self.get_phone_number()
         if phone:
-            sms.send(phone, "A new message from Shiftor has been sent to you. Please check your email for more details.")
+            sms.send(phone, "Insert {0} is interested in you regarding a job opportunity! Check your email or Login to Shiftor for more information.".format(profile.venue_name))
 
 class BartendProfile (models.Model):
     owner = models.ForeignKey(User)

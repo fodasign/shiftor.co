@@ -155,9 +155,11 @@ def send_message (request):
     for k in ["job_type", "job_duration", "details"]:
         data[k] = request.POST.get(k)
 
+    profile = request.user.get_profile()
     for u in users:
-        emails.send(request, "message", user=u, bar=request.user.get_profile(), **data)
-        u.message()
+        emails.send(request, "message", user=u,
+                    bar=profile, **data)
+        u.message(profile)
     return render(request, "supervisor/send_message.html", data)
 
 def logout (request):

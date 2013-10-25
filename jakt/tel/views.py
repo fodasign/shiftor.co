@@ -61,6 +61,7 @@ def verify_number (request, pk):
         if code and code.upper().strip() == number.verification_code:
             number.verified = True
             number.save()
+            sms.send(number, "Welcome to Shiftor, be sure to check your emails in addition to text notifications to find your next job!")
             sms.send(number, "Thanks! You can stop messages at any time by sending STOP")
             return HttpResponseRedirect(reverse("tel.views.list_numbers"))
         else:
@@ -98,7 +99,7 @@ def incoming (request):
     if body == "HELP":
         pass
     elif body == "STOP":
-        sms.send(outgoing, "SMS messages stopped.")
+        sms.send(outgoing, "Your text notifications has been suspended. Be sure to check your email or Login to Shiftor for more information.")
         outgoing.deleted = True
         outgoing.save()
     return HttpResponse("")
