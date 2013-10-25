@@ -10,6 +10,21 @@ def set_from_dict (d, *args):
             new[k] = d.get(k)
     globals().update(new)
 
+def get_bool (k, default=False):
+    n = os.environ.get(k, "").lower().strip()
+    if n == "":
+        return default
+    try:
+        n = int(n)
+        if n == 0:
+            return False
+        return True
+    except ValueError:
+        if n == "true":
+            return True
+        elif n == "false":
+            return False
+
 # INTERNAL_IPS = ("127.0.0.1", "0.0.0.0",)
 class AllIps ():
     def __init__ (self):
@@ -19,26 +34,22 @@ class AllIps ():
 INTERNAL_IPS = AllIps()
 
 DEBUG_TOOLBAR_CONFIG = {
-    "INTERCEPT_REDIRECTS" : False
+    "INTERCEPT_REDIRECTS" : get_bool("TOOLBAR_INTERCEPT", False)
 }
 
 # Switch out the user model
 AUTH_USER_MODEL = 'supervisor.User'
 
-DEBUG = False
-if os.environ.get("DEBUG", None) is not None:
-    DEBUG = True
+DEBUG = get_bool("DEBUG")
 TEMPLATE_DEBUG = DEBUG
 
 # Secure cookies
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
 
-ALLOW_SIGNUP = True
-if os.environ.get("ALLOW_SIGNUP", True) is not True:
-    ALLOW_SIGNUP = False
+ALLOW_SIGNUP = get_bool("ALLOW_SIGNUP", True)
 
-PAYWALL = os.environ.get("PAYWALL", False)
+PAYWALL = get_bool("PAYWALL")
 
 BUGSNAG = {
     "api_key": os.environ.get("BUGSNAG_KEY", None),
@@ -79,7 +90,7 @@ SINGLY_URL = os.environ.get("SINGLY_URL")
 # Stripe stuff
 STRIPE_SECRET = os.environ.get("STRIPE_SECRET", None)
 STRIPE_PUBLIC = os.environ.get("STRIPE_PUBLIC", None)
-STRIPE_LIVEMO = os.environ.get("STRIPE_LIVEMO", False)
+STRIPE_LIVEMO = get_bool("STRIPE_LIVEMO", False)
 
 # Email
 set_from_dict(os.environ, "EMAIL_BACKEND", "EMAIL_HOST", "EMAIL_HOST_USER", "EMAIL_HOST_PASSWORD", "EMAIL_PORT")
@@ -121,14 +132,14 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = get_bool("USE_I18N", False)
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
-USE_L10N = True
+USE_L10N = get_bool("USE_L10N", True)
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = get_bool("USE_TZ", True)
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
@@ -193,7 +204,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     "bugsnag.django.middleware.BugsnagMiddleware",
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -220,13 +230,18 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.admin',
-    'debug_toolbar',
     'south',
     'supervisor',
     'tel',
     'frontend',
     'app',
 )
+
+DEBUG_TOOLBAR = get_bool("DEBUG_TOOLBAR", DEBUG)
+
+if DEBUG_TOOLBAR:
+    INSTALLED_APPS += ("debug_toolbar",)
+    MIDDLEWARE_CLASSES += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
