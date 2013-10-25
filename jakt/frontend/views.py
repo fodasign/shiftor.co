@@ -42,7 +42,7 @@ def profile (request):
     pk = request.GET.get("pk")
     if not pk:
         raise Http404
-    profile = gog(BartendProfile, pk)
+    profile = gog(BartendProfile, pk=pk)
     return render(request, "frontend/profile_modal.html", {"profile" : profile})
 
 def login (request):
