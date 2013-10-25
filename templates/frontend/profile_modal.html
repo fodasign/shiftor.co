@@ -1,0 +1,11 @@
+<img src="{{ profile.photo }}" class="img-polaroid pull-right" style="margin-right: 10px">
+<h3>{{ profile.owner.name }}</h3>
+<!-- <h4>Personal Info</h4> -->
+<p><strong>Age:</strong> {{ profile.age }}</p>
+<p><strong>Student/Professional:</strong> {% if profile.student %}Student{% else %}Professional{% endif %}</p>
+<p><strong>Availability: </strong>{{ profile.available_dates }}</p>
+<p><strong>Work Place Preference: </strong> {{ profile.available_work }}</p>
+<p><strong>Job Interest: </strong> {{ profile.work_prefs }}</p>
+<p><strong>Years in Industry: </strong> {{ profile.years_exp }}</p>
+<p><strong>Licensed Bartender: </strong> {% if profile.licensed %}Yes{% else %}No{% endif %}</p>
+<p><strong>Bio:</strong> {{ profile.pitch }}</p>

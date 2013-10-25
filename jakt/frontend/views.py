@@ -5,11 +5,12 @@ import logging, os
 logger = logging.getLogger(__name__)
 
 # Django imports
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.core.exceptions import PermissionDenied
 
 from supervisor.models import BartendProfile, BarProfile
+from utility.annoying import get_or_gone as gog
 
 def home (request):
     return render(request, "frontend/home.html")
@@ -36,6 +37,13 @@ def tos (request):
 def search (request):
     profiles = BartendProfile.objects.all()
     return render(request, "frontend/search.html", { "profiles" : profiles })
+
+def profile (request):
+    pk = request.GET.get("pk")
+    if not pk:
+        raise Http404
+    profile = gog(BartendProfile, pk)
+    return render(request, "frontend/profile_modal.html", {"profile" : profile})
 
 def login (request):
     return render(request, "frontend/login.html")

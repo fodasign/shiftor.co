@@ -12,7 +12,7 @@ urlpatterns = patterns("frontend.views",
     url(r"^tos$",       "tos",          name="tos"),
 
     url(r"^search$",     "search",      name="search"),
-
+    url(r"^profile$", "profile"),
     url(r"^login$",                 "login",                name="login"),
     url(r"^bartendersignup$",       "bartendersignup",      name="bartendersignup"),
     url(r"^completebartenderprofile$",       "completebartenderprofile",      name="completebartenderprofile"),
