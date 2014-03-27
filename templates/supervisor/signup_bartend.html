@@ -4,7 +4,7 @@
 
 
     <p class="centered">Are you a venue manager? <a href="{% url 'sv-toggle' to='bar' %}?next={% firstof request.path '' %}">Sign Up Here</a></p>
-    <h4 class="uppercase centered">Bar Employee Signup</h4>
+    <h4 class="uppercase centered">Staff Candidate Sign Up</h4>
     <!-- <div class="span12"> -->
         <form method="POST">
             {% csrf_token %}

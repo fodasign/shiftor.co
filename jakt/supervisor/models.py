@@ -1,5 +1,6 @@
 # coding=utf-8
 import logging, uuid
+import re
 from datetime import date
 logger = logging.getLogger(__name__)
 
@@ -167,3 +168,10 @@ class BarProfile (models.Model):
 
     def has_active_card (self):
         return not not self.customer_id
+
+    @property
+    def valid_website (self):
+        ''' Returns valid website '''
+        if not re.match('(?:http|ftp|https)://', self.website):
+           url = '%s%s' % ('http://', self.website)
+           return url

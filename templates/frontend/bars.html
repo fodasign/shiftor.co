@@ -3,15 +3,19 @@
 {% block static_title %}Participating Bars &amp; Restaurants{% endblock %}
 
 {% block static_content %}
-<style>
-.bar-logo {
-    margin-bottom: 10px;
-}
-</style>
-<div class="row" style="margin-bottom: 50px">
+
+<div class="row venue-row" style="margin-bottom: 50px">
     {% for bar in bars %}
-    <div class="span4 bar-logo">
+    <div class="bar-logo">
+        <div class="img-polaroid img-outer">
+            <div class="img-container" style="background-image:url(' {{bar.logo}} ');"></div>
+        </div>
         <img src="{{ bar.logo }}" class="img-polaroid">
+        {% if bar.website %}
+        <div class="centered">
+            <a href="{{ bar.valid_website }}">{{ bar.website }}</a>
+        </div>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
