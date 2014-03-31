@@ -169,9 +169,9 @@ class BarProfile (models.Model):
     def has_active_card (self):
         return not not self.customer_id
 
-    @property
-    def valid_website (self):
-        ''' Returns valid website '''
-        if not re.match('(?:http|ftp|https)://', self.website):
-           url = '%s%s' % ('http://', self.website)
-           return url
+    # @property
+    # def valid_website (self):
+    #     ''' Returns valid website '''
+    #     if not re.match('(?:http|ftp|https)://', self.website):
+    #        url = '%s%s' % ('http://', self.website)
+    #        return url

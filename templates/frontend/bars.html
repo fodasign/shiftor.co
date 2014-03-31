@@ -13,7 +13,7 @@
         <img src="{{ bar.logo }}" class="img-polaroid">
         {% if bar.website %}
         <div class="centered">
-            <a href="{{ bar.valid_website }}">{{ bar.website }}</a>
+            {{ bar.website|urlize }}
         </div>
         {% endif %}
     </div>
