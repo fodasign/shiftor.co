@@ -32,10 +32,13 @@ class SignupForm (forms.Form):
     last_name = forms.CharField(max_length=255)
     email = forms.EmailField(max_length=255)
     password = forms.CharField(widget=forms.PasswordInput)
+    terms = forms.BooleanField()
 
     def clean (self):
         cleaned_data = super(SignupForm, self).clean()
         email = cleaned_data.get("email")
+        terms = cleaned_data.get("terms")
+
         if email:
             cleaned_data["email"] = email.strip().lower()
             if gon(User, email=cleaned_data["email"]):

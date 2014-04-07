@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <p>Are you a bartender? <a href="{% url 'sv-toggle' to='bartend' %}?next={% firstof request.path '' %}">Sign Up Here</a></p>
+    <p>Are you a Staff Candidate? <a href="{% url 'sv-toggle' to='bartend' %}?next={% firstof request.path '' %}">Sign Up Here</a></p>
     <h4 class="uppercase centered">Venue Signup</h4>
     <!-- <div class="span12"> -->
         <form method="POST" class="">
@@ -31,6 +31,13 @@
             <input type="text" placeholder="email" class="span4 input-large uppercase" style="text-align:center; margin-left: 0" value="{{ form.email.value|default_if_none:"" }}" name="email"></input><br>
 
             <input type="password" placeholder="password" class="span4 input-large uppercase" style="text-align:center" value="" name="password"></input>
+
+            <div class="terms-acceptance">
+                <input type="checkbox" class="input-large uppercase" id="terms" name="terms" value="{{ form.email.value|default_if_none:False }}"></input>
+                <label for="terms" style="display: inline;">I've reviewed and accepted the
+                    <a href="{% url 'frontend.views.tos' %}" target="_blank">terms and conditions</a> and
+                    <a href="{% url 'frontend.views.privacy' %}" target="_blank">privacy policy</a>.</label>
+            </div>
 
             <br><br><button type="submit" class="open-button">Sign Up</button>
         </form>
