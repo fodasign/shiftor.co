@@ -25,6 +25,7 @@ class User (AbstractUser):
 
     is_bar = models.BooleanField(default=False)
     is_bartend = models.BooleanField(default=False)
+    terms = models.BooleanField(default=False)
 
     def __unicode__ (self):
         return u"{0} {1}".format(self.first_name, self.last_name)
