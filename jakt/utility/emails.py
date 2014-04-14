@@ -29,7 +29,7 @@ def verify_admin (request, **kwargs):
     return title, body, from_email, to_email
 
 def thread_response (request, user=None, message=None, thread=None, **kwargs):
-    title = "{user.name} sent you a message about {item}".format(user=user, item=thread.item)
+    title = u"{user.name} sent you a message about {item}".format(user=user, item=thread.item)
     template = "emails/thread_response.html"
     to_email = [user.email]
     from_email = "helper@silktradr.com"
@@ -39,7 +39,7 @@ def thread_response (request, user=None, message=None, thread=None, **kwargs):
     return title, body, from_email, to_email
 
 def administrative (request, **kwargs):
-    title = "A general information email about {subject}".format(subject=kwargs.get("subject"))
+    title = u"A general information email about {subject}".format(subject=kwargs.get("subject"))
     template = "emails/administrative.html"
     to_email = get_admin_emails()
     from_email = "helper@silktradr.com"
@@ -51,7 +51,7 @@ def message (request, **kwargs):
     title = "Job Message from Shiftor"
     template = "emails/message.html"
     to_email = [kwargs.get("user").email]
-    from_email = "jobs@ccparcel.com"
+    from_email = settings.JOB_EMAIL
     context = Context(kwargs)
     body = get_template(template).render(context)
     return title, body, from_email, to_email
@@ -65,10 +65,10 @@ def get_admin_emails ():
 
 def _process_hooks (request, email, **kwargs):
     """Processed admin hooks for emails, called after send is executed."""
-    logger.debug("Processing remaining hooks for {0}".format(email))
+    logger.debug(u"Processing remaining hooks for {0}".format(email))
     if email in ["verify"]:
-        logger.debug("Admin hook found for {0}".format(email))
-        admin_func = EMAIL_MAP.get("{0}_admin".format(email))
+        logger.debug(u"Admin hook found for {0}".format(email))
+        admin_func = EMAIL_MAP.get(u"{0}_admin".format(email))
         send_mail(*admin_func(request, **kwargs))
 
 EMAIL_MAP = {
@@ -85,13 +85,13 @@ def send (request, email, **kwargs):
     as a function in this file which is executed with the corrosponding :data:`**kwargs`
     and request object.
     """
-    logger.debug("Attempting to send an {0} email".format(email))
+    logger.debug(u"Attempting to send an {0} email".format(email))
     # Dig the template out of our available functions
     template = EMAIL_MAP.get(email)
     if template is None:
-        raise LookupError("Unable to find template function {0}".format(email))
+        raise LookupError(u"Unable to find template function {0}".format(email))
 
-    logger.debug("Executing {0} with arguments {1}".format(template, kwargs))
+    logger.debug(u"Executing {0} with arguments {1}".format(template, kwargs))
     try:
         args = template(request, **kwargs)
         send_mail(*args, fail_silently=False)

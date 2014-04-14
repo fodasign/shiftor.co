@@ -81,6 +81,7 @@ ADMINS = (
     ('JAKT', 'general@byjakt.com'),
 )
 MANAGERS = ADMINS
+JOB_EMAIL = 'jobs@shiftor.co'
 
 # Singly stuff
 SINGLY_CLIENT_ID = os.environ.get("SINGLY_CLIENT_ID")
