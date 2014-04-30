@@ -32,7 +32,7 @@ def add_number (request):
         form = OutgoingNumberForm(request.POST)
         if form.is_valid():
             number = form.save(commit=False)
-            number.name = "{0}'s number".format(request.user)
+            number.name = u"{0}'s number".format(request.user)
             number.owner = request.user
             number.save()
             return HttpResponseRedirect(reverse("tel.views.send_verification", kwargs={"pk" : number.pk}))
@@ -45,7 +45,7 @@ def send_verification (request, pk):
         return HttpResponseRedirect(reverse("tel.views.list_numbers"))
 
     code = number.roll_verification_code()
-    sms.send(number, "Please enter the following code: {0}".format(code))
+    sms.send(number, u"Please enter the following code: {0}".format(code))
     return HttpResponseRedirect(reverse("tel.views.verify_number", kwargs={"pk" : number.pk}))
 
 @requires_login
