@@ -7,13 +7,24 @@ logger = logging.getLogger(__name__)
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.core.signing import TimestampSigner
+from django.core.mail import send_mail
+from django.utils.crypto import get_random_string
+from django.utils.encoding import python_2_unicode_compatible
+
 from utility import annoying as a
+from app import settings
 
 from tel.models import OutgoingNumber
 from tel import sms
 
 class User (AbstractUser):
     """Extended user model."""
+
+    #: Password reset field.
+    password_reset = models.CharField(max_length=255, blank=True, null=True,
+        verbose_name="Password reset code",
+        help_text="Used during a password reset operation.")
 
     timezone = models.CharField(max_length=255, default="America/New_York")
 
@@ -46,6 +57,25 @@ class User (AbstractUser):
             if self.is_bar:
                 return p.logo
             return p.photo
+
+    def send_password_reset (self, request, **kwargs):
+        kwargs.setdefault("subject", "Reset Your Password")
+        kwargs.setdefault("body", "You can reset your password with this link: {0}.\n\nThis link will expire in 60 minutes.")
+        kwargs.setdefault("from", settings.SERVER_EMAIL)
+
+        chars = 'abcdefghijklmnopqrstuvwxyz'
+        signer = TimestampSigner()
+        password_reset = get_random_string(50, chars)
+        self.password_reset = signer.sign(password_reset)
+        self.save()
+        logger.info(self.password_reset)
+        reset_url = request.build_absolute_uri(reverse("sv-reset",
+            kwargs={ "code" : self.password_reset }))
+        subject = kwargs.get("subject")
+        body = kwargs.get("body").format(reset_url)
+        from_email = kwargs.get("from")
+        to = [self.email]
+        send_mail(subject, body, from_email, to, fail_silently=False)
 
     def get_phone_number (self):
         numbers = OutgoingNumber.objects.filter(owner=self, deleted=False)

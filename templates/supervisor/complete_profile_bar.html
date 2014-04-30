@@ -53,6 +53,9 @@
 
             <br><br><button type="submit" class="open-button">Submit</button>
         </form>
+        {% if page %}
+        <br/><br/><a href="{% url 'sv-changepassword' %}" class="open-button" type="submit">Change Your Password</a>
+        {% endif %}
 
 {% endblock %}
 

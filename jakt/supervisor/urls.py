@@ -16,4 +16,10 @@ urlpatterns = patterns("supervisor.views",
     url(r"^logout/?$", "logout", name="sv-logout"),
     url(r"^bounce/?$", "bounce", name="sv-bounce"),
     url(r"^email/?$", "add_email"),
+
+    # Forgot password/ Reset / chage password
+    url(r"^forget$", "forgot", name="sv-forgot"),
+    url(r"^reset/(?P<code>\S+)$", "reset", name="sv-reset"),
+    url(r"^password$", "change_password", name="sv-changepassword"),
+
 )

@@ -7,9 +7,11 @@ logger = logging.getLogger(__name__)
 # Django imports
 from django import forms
 from django.contrib.auth import authenticate as dj_authenticate, login as dj_login
+from django.core.exceptions import ValidationError
 
 from .models import User, BartendProfile, BarProfile
 from utility.annoying import get_or_none as gon
+from utility import fields
 
 class LoginForm (forms.Form):
     username = forms.CharField(max_length=30, label="Email")
@@ -58,3 +60,66 @@ class BarProfileForm (forms.ModelForm):
     class Meta:
         model = BarProfile
         exclude = ('owner', 'stripe_id', 'card_4')
+
+class ChangePasswordForm (forms.Form):
+    old_password = fields.PasswordField(mixin=[
+        ("placeholder", "Current password"),
+        ("required", True),
+    ])
+    old_password.widget.attrs.update({
+            'class': '',
+    })
+    password = fields.PasswordField(mixin=[
+        "autofocus",
+        ("placeholder", "New password"),
+        ("required", True),
+    ])
+    password.widget.attrs.update({
+            'class': '',
+    })
+
+    def __init__ (self, *args, **kwargs):
+        self.instance = kwargs.pop("instance", None)
+        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+
+    def clean_old_password (self):
+        password = self.cleaned_data.get("old_password")
+        if self.instance and password:
+            if not self.instance.check_password(password):
+                raise ValidationError("Your current password did not match.",
+                    code="invalid")
+        return password
+
+class ForgotPasswordForm (forms.Form):
+    email = fields.EmailField(mixin=[
+        "autofocus",
+        "required",
+        ("placeholder", "Account email address")
+    ])
+    email.widget.attrs.update({
+            'class': '',
+    })
+
+class ResetPasswordForm (forms.Form):
+    new_password = fields.PasswordField(mixin=[
+        "autofocus",
+        ("required", True),
+        ("placeholder", "New Password")
+    ])
+    new_password.widget.attrs.update({
+            'class': '',
+    })
+    repeat_new_password = fields.PasswordField(mixin=[
+        ("required", True),
+        ("placeholder", "Confirm Password")
+    ])
+    repeat_new_password.widget.attrs.update({
+            'class': '',
+    })
+
+    def clean_repeat_new_password(self):
+        new_password = self.cleaned_data.get("new_password")
+        repeat_new_password = self.cleaned_data.get("repeat_new_password")
+        if new_password and repeat_new_password and new_password != repeat_new_password:
+            raise forms.ValidationError("New passwords did not match")
+        return repeat_new_password
