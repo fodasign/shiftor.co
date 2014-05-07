@@ -180,11 +180,11 @@
             <textarea class="span5" maxlength="300" rows="5" name="pitch" value="{{ form.pitch.value|default_if_none:"" }}" placeholder="Please provide a short bio about yourself. Limit of 300 characters."></textarea>
 
 
-
-
-
             <br><br><center><a href="" class="open-button">Submit</a></center>
         </form>
+        {% if page %}
+        <br/><br/><a href="{% url 'sv-changepassword' %}" class="open-button" type="submit">Change Your Password</a>
+        {% endif %}
     <!-- </div> -->
 </div>
 

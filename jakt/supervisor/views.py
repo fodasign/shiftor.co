@@ -22,7 +22,8 @@ from utility import emails
 # Internal imports
 from . import auth
 from .models import User, BarProfile, BartendProfile
-from .forms import EmailForm, LoginForm, SignupForm, BarProfileForm, BartendProfileForm
+from .forms import (EmailForm, LoginForm, SignupForm, BarProfileForm, BartendProfileForm,
+                    ChangePasswordForm, ForgotPasswordForm, ResetPasswordForm)
 from .stripelib import customer
 
 def next (request):
@@ -141,6 +142,7 @@ def profile (request):
             form.save()
             messages.success(request, "Profile saved!")
     data["form"] = form
+    data["page"] = "edit_profile"
     return render(request, template, data)
 
 def send_message (request):
@@ -218,3 +220,76 @@ def add_billing (request):
         else:
             err = "Unable to verify your card. Please try again."
     return render(request, "supervisor/add_billing.html", { "err" : err })
+
+def forgot (request):
+    data = {}
+    login_form = LoginForm()
+    data["login_form"] = login_form
+
+    if request.user.is_authenticated():
+        return next(request)
+    # data = {}
+    form = ForgotPasswordForm()
+    if request.POST:
+        form = ForgotPasswordForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get("email")
+            user = a.get_or_none(User, email__iexact=email)
+            if user:
+                user.send_password_reset(request)
+            messages.success(request, "A reset password link has been emailed if that address exists with further instructions. This password link will expire in 60 minutes.")
+            form = None
+    data["form"] = form
+    return render(request, "supervisor/forgot.html", data)
+
+def reset (request, code):
+    data = {}
+    login_form = LoginForm()
+    data["login_form"] = login_form
+
+    if request.user.is_authenticated():
+        return next(request)
+    # data = {}
+    # Make sure this is a proper link
+    signer = TimestampSigner()
+    try:
+        signer.unsign(code, max_age=3600)
+    except SignatureExpired:
+        messages.error(request, "Password reset link expired.")
+        return HttpResponseRedirect("/")
+    except BadSignature:
+        messages.error(request, "Invalid password reset link.")
+        return HttpResponseRedirect("/")
+    else:
+        user = a.get_or_gone(User, password_reset=code)
+        form = ResetPasswordForm()
+        if request.POST:
+            form = ResetPasswordForm(request.POST)
+            if form.is_valid():
+                user.set_password(form.cleaned_data.get("new_password"))
+                user.password_reset = None
+                user.save()
+                messages.success(request, "Your password has been reset.")
+                user = dj_authenticate(username=user.username, password=form.cleaned_data.get("new_password"))
+                dj_login(request, user)
+                messages.success(request, "You have been logged in.")
+                return next(request)
+        data["form"] = form
+    return render(request, "supervisor/reset.html", data)
+
+@login_required
+def change_password (request):
+    data = {}
+    login_form = LoginForm()
+    data["login_form"] = login_form
+
+    form = ChangePasswordForm(instance=request.user)
+    if request.POST:
+        form = ChangePasswordForm(request.POST, instance=request.user)
+        if form.is_valid():
+            request.user.set_password(form.cleaned_data.get("password"))
+            request.user.save()
+            messages.success(request, "Your password has been changed.")
+            return HttpResponseRedirect(reverse("supervisor.views.profile"))
+    data["form"] = form
+    return render(request, "supervisor/change_password.html", data)
